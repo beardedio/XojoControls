@@ -1,9 +1,7 @@
-RBControls
-==========
+Xojo-Controls
+=============
 
-
-A set of custom controls for RealBasic licensed under the MIT License
-
+A set of custom controls for Xojo / RealBasic licensed under the MIT License
 
 ==========
 

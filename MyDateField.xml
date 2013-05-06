@@ -1,0 +1,1309 @@
+<?xml version="1.0"?>
+<RBProject version="2012r2.1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="451265792">
+ <ObjName>MyDateField</ObjName>
+ <ObjContainerID>1333785165</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>TextField</Superclass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <HookInstance>
+  <ItemName>GotFocus</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub GotFocus()</SourceLine>
+   <SourceLine>me.HasFocus = True</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kSelectFrameFirstFrame)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>KeyDown</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function KeyDown(Key As String) As Boolean</SourceLine>
+   <SourceLine>Dim i, iCurrentFramePos As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iCurrentFramePos = -1</SourceLine>
+   <SourceLine>For i = 0 to 2</SourceLine>
+   <SourceLine>If FormatDateOrder(i) = me.iLastFrameType Then iCurrentFramePos = i</SourceLine>
+   <SourceLine>Next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Select Case me.iLastFrameType</SourceLine>
+   <SourceLine>Case kFrameDays, kFrameMonths, kFrameYears</SourceLine>
+   <SourceLine>//Good selection</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kSelectFrameNone)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Select Case Asc(Key)</SourceLine>
+   <SourceLine>Case 9, 29 //Tab/Right</SourceLine>
+   <SourceLine>If iCurrentFramePos &lt; 2 Then</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kSelFrameNext)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Case 28 //Left</SourceLine>
+   <SourceLine>If iCurrentFramePos &lt;&gt; 0 Then me.UpdateDateDisplay(kSelFramePrev)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Case 30 //Up</SourceLine>
+   <SourceLine>me.Up()</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Case 31 //Down</SourceLine>
+   <SourceLine>me.Down()</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Select Case me.iLastFrameType</SourceLine>
+   <SourceLine>Case kFrameDays</SourceLine>
+   <SourceLine>Dim iCombinedValue, iDayValue, iDaysInMonth As Integer</SourceLine>
+   <SourceLine>If Not IsNumeric(Key) Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iDaysInMonth = DaysInMonth(me.CurrentDate)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatLeadingZeroDay Then</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelText,2) + Key)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelText,1) + Key)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If iCombinedValue &gt; iDaysInMonth Then</SourceLine>
+   <SourceLine>iDayValue = Val(Key)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iDayValue = iCombinedValue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If iDayValue = 0 Then iDayValue = 1</SourceLine>
+   <SourceLine>me.CurrentDate.Day = iDayValue</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameDays)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>RaiseEvent DateChanged()</SourceLine>
+   <SourceLine>Case kFrameMonths</SourceLine>
+   <SourceLine>Dim iCombinedValue, iMonthValue, iCurrentDay, iCurrentYear As Integer</SourceLine>
+   <SourceLine>Dim dNewMonth As Date</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Not IsNumeric(Key) Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iCurrentDay = me.CurrentDate.Day</SourceLine>
+   <SourceLine>iCurrentYear = me.CurrentDate.Year</SourceLine>
+   <SourceLine>dNewMonth = New Date</SourceLine>
+   <SourceLine>dNewMonth.TotalSeconds = me.CurrentDate.TotalSeconds</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatLeadingZeroMonth Then</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelText,2) + Key)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelText,1) + Key)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If iCombinedValue &gt; 12 Then</SourceLine>
+   <SourceLine>iMonthValue = Val(Key)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iMonthValue = iCombinedValue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If iMonthValue = 0 Then iMonthValue = 1</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dNewMonth.Year = iCurrentYear</SourceLine>
+   <SourceLine>dNewMonth.Month = iMonthValue</SourceLine>
+   <SourceLine>If iCurrentDay &gt; DaysInMonth(dNewMonth) Then iCurrentDay = DaysInMonth(dNewMonth)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.CurrentDate.Day = iCurrentDay</SourceLine>
+   <SourceLine>me.CurrentDate.Month = iMonthValue</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameMonths)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>RaiseEvent DateChanged()</SourceLine>
+   <SourceLine>Case kFrameYears</SourceLine>
+   <SourceLine>Dim iCombinedValue, iYearValue, iCurrentDay, iCurrentMonth As Integer</SourceLine>
+   <SourceLine>Dim dNewYear As Date</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Not IsNumeric(Key) Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iCurrentDay = me.CurrentDate.Day</SourceLine>
+   <SourceLine>iCurrentMonth = me.CurrentDate.Month</SourceLine>
+   <SourceLine>dNewYear = New Date</SourceLine>
+   <SourceLine>dNewYear.TotalSeconds = me.CurrentDate.TotalSeconds</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelText,Len(me.SelText)-1) + Key)</SourceLine>
+   <SourceLine>If iCombinedValue &gt; 9999 Then</SourceLine>
+   <SourceLine>iYearValue = Val(Key)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iYearValue = iCombinedValue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>dNewYear.Year = iYearValue</SourceLine>
+   <SourceLine>dNewYear.Month = iCurrentMonth</SourceLine>
+   <SourceLine>If iCurrentDay &gt; DaysInMonth(dNewYear) Then iCurrentDay = DaysInMonth(dNewYear)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.CurrentDate.Day = iCurrentDay</SourceLine>
+   <SourceLine>me.CurrentDate.Year = iYearValue</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameYears)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>RaiseEvent DateChanged()</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>LostFocus</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub LostFocus()</SourceLine>
+   <SourceLine>me.HasFocus = False</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kSelectFrameNone)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>MouseDown</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function MouseDown(X As Integer, Y As Integer) As Boolean</SourceLine>
+   <SourceLine>Dim iChar As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Not me.HasFocus Then me.SetFocus()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iChar = me.CharPosAtXY(X,Y)</SourceLine>
+   <SourceLine>If iChar &gt;= iPositionDayStart and iChar &lt;= iPositionDayStart + iPositionDayLength Then</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameDays)</SourceLine>
+   <SourceLine>ElseIf iChar &gt;= iPositionMonthStart and iChar &lt;= iPositionMonthStart + iPositionMonthLength Then</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameMonths)</SourceLine>
+   <SourceLine>ElseIf iChar &gt;= iPositionYearStart and iChar &lt;= iPositionYearStart + iPositionYearLength Then</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameYears)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kSelectFrameNone)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>Open</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Open()</SourceLine>
+   <SourceLine>Dim bAssOrig As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.CurrentDate = New Date</SourceLine>
+   <SourceLine>me.ReadOnly = True</SourceLine>
+   <SourceLine>me.AcceptTabs = True</SourceLine>
+   <SourceLine>me.Alignment = EditField.AlignRight</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kSelectFrameNone)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>RaiseEvent Open()</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>SelChange</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SelChange()</SourceLine>
+   <SourceLine>If me.assigningSelection Then Return</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.HasFocus Then</SourceLine>
+   <SourceLine>Dim iShouldBeStart, iShouldBeLength, iChar As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iChar = me.SelStart</SourceLine>
+   <SourceLine>If iChar &gt;= iPositionDayStart and iChar &lt;= iPositionDayStart + iPositionDayLength Then</SourceLine>
+   <SourceLine>If Not me.HasFocus Then me.SetFocus()</SourceLine>
+   <SourceLine>iShouldBeStart = iPositionDayStart</SourceLine>
+   <SourceLine>iShouldBeLength = iPositionDayLength</SourceLine>
+   <SourceLine>me.iLastFrameType = kFrameDays</SourceLine>
+   <SourceLine>ElseIf iChar &gt;= iPositionMonthStart and iChar &lt;= iPositionMonthStart + iPositionMonthLength Then</SourceLine>
+   <SourceLine>If Not me.HasFocus Then me.SetFocus()</SourceLine>
+   <SourceLine>iShouldBeStart = iPositionMonthStart</SourceLine>
+   <SourceLine>iShouldBeLength = iPositionMonthLength</SourceLine>
+   <SourceLine>me.iLastFrameType = kFrameMonths</SourceLine>
+   <SourceLine>ElseIf iChar &gt;= iPositionYearStart and iChar &lt;= iPositionYearStart + iPositionYearLength Then</SourceLine>
+   <SourceLine>If Not me.HasFocus Then me.SetFocus()</SourceLine>
+   <SourceLine>iShouldBeStart = iPositionYearStart</SourceLine>
+   <SourceLine>iShouldBeLength = iPositionYearLength</SourceLine>
+   <SourceLine>me.iLastFrameType = kFrameYears</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iShouldBeStart = 0</SourceLine>
+   <SourceLine>iShouldBeLength = 0</SourceLine>
+   <SourceLine>me.iLastFrameType = kSelectFrameNone</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.SelStart &lt;&gt; iShouldBeStart or me.SelStart &lt;&gt; iShouldBeLength Then</SourceLine>
+   <SourceLine>Dim bAssSel As Boolean</SourceLine>
+   <SourceLine>bAssSel = me.assigningSelection</SourceLine>
+   <SourceLine>me.assigningSelection = True</SourceLine>
+   <SourceLine>me.SelStart = iShouldBeStart</SourceLine>
+   <SourceLine>me.SelLength = iShouldBeLength</SourceLine>
+   <SourceLine>me.assigningSelection = bAssSel</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Dim bAssSel As Boolean</SourceLine>
+   <SourceLine>bAssSel = me.assigningSelection</SourceLine>
+   <SourceLine>me.assigningSelection = True</SourceLine>
+   <SourceLine>me.SelStart = 0</SourceLine>
+   <SourceLine>me.SelLength = 0</SourceLine>
+   <SourceLine>me.iLastFrameType = kSelectFrameNone</SourceLine>
+   <SourceLine>me.assigningSelection = bAssSel</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <Method>
+  <ItemName>DaysInMonth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine> Shared Function DaysInMonth(d As Date) As Integer</SourceLine>
+   <SourceLine>Dim dNew As Date</SourceLine>
+   <SourceLine>Dim iCount As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dNew = New Date</SourceLine>
+   <SourceLine>dNew.TotalSeconds = d.TotalSeconds</SourceLine>
+   <SourceLine>dNew.Day = 1</SourceLine>
+   <SourceLine>iCount = 1</SourceLine>
+   <SourceLine>Do</SourceLine>
+   <SourceLine>dNew.Day = dNew.Day + 1</SourceLine>
+   <SourceLine>If dNew.Month = d.Month Then iCount = iCount + 1</SourceLine>
+   <SourceLine>Loop Until (dNew.Month &lt;&gt; d.Month)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return iCount</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams>d As Date</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Down</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Down()</SourceLine>
+   <SourceLine>Select Case me.iLastFrameType</SourceLine>
+   <SourceLine>Case kFrameYears</SourceLine>
+   <SourceLine>Dim iNewYears, iCurrentDay, iCurrentMonth As Integer</SourceLine>
+   <SourceLine>iCurrentDay = me.CurrentDate.Day</SourceLine>
+   <SourceLine>iCurrentMonth = me.CurrentDate.Month</SourceLine>
+   <SourceLine>iNewYears = me.CurrentDate.Year - 1</SourceLine>
+   <SourceLine>If iNewYears &lt; 0 Then iNewYears = 9999</SourceLine>
+   <SourceLine>me.CurrentDate.Year = iNewYears</SourceLine>
+   <SourceLine>me.CurrentDate.Month = iCurrentMonth</SourceLine>
+   <SourceLine>If DaysInMonth(me.CurrentDate) &lt; iCurrentDay Then iCurrentDay = DaysInMonth(me.CurrentDate)</SourceLine>
+   <SourceLine>me.CurrentDate.Day = iCurrentDay</SourceLine>
+   <SourceLine>RaiseEvent DateChanged()</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameYears)</SourceLine>
+   <SourceLine>Case kFrameMonths</SourceLine>
+   <SourceLine>Dim iNewMonths, iCurrentDay, iCurrentYear As Integer</SourceLine>
+   <SourceLine>iCurrentDay = me.CurrentDate.Day</SourceLine>
+   <SourceLine>iCurrentYear = me.CurrentDate.Year</SourceLine>
+   <SourceLine>iNewMonths = me.CurrentDate.Month - 1</SourceLine>
+   <SourceLine>If iNewMonths &lt; 1 Then iNewMonths = 12</SourceLine>
+   <SourceLine>me.CurrentDate.Year = iCurrentYear</SourceLine>
+   <SourceLine>me.CurrentDate.Month = iNewMonths</SourceLine>
+   <SourceLine>If DaysInMonth(me.CurrentDate) &lt; iCurrentDay Then iCurrentDay = DaysInMonth(me.CurrentDate)</SourceLine>
+   <SourceLine>me.CurrentDate.Day = iCurrentDay</SourceLine>
+   <SourceLine>RaiseEvent DateChanged()</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameMonths)</SourceLine>
+   <SourceLine>Case kFrameDays</SourceLine>
+   <SourceLine>Dim iNewDays, iCurrentMonth, iCurrentYear As Integer</SourceLine>
+   <SourceLine>iCurrentMonth = me.CurrentDate.Month</SourceLine>
+   <SourceLine>iCurrentYear = me.CurrentDate.Year</SourceLine>
+   <SourceLine>iNewDays = me.CurrentDate.Day - 1</SourceLine>
+   <SourceLine>If iNewDays &lt; 1 Then iNewDays = DaysInMonth(me.CurrentDate)</SourceLine>
+   <SourceLine>me.CurrentDate.Year = iCurrentYear</SourceLine>
+   <SourceLine>me.CurrentDate.Month = iCurrentMonth</SourceLine>
+   <SourceLine>me.CurrentDate.Day = iNewDays</SourceLine>
+   <SourceLine>RaiseEvent DateChanged()</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameDays)</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetCurrentDate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetCurrentDate() As Date</SourceLine>
+   <SourceLine>Return me.CurrentDate</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult>Date</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetCurrentDate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetCurrentDate(d As Date)</SourceLine>
+   <SourceLine>If d = Nil Then</SourceLine>
+   <SourceLine>Me.CurrentDate = New Date</SourceLine>
+   <SourceLine>Elseif Me.CurrentDate &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>Me.CurrentDate.TotalSeconds = d.TotalSeconds</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Exit Sub</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>RaiseEvent DateChanged</SourceLine>
+   <SourceLine>Me.UpdateDateDisplay(Me.iLastFrameType)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>d As Date</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Up</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Up()</SourceLine>
+   <SourceLine>Select Case me.iLastFrameType</SourceLine>
+   <SourceLine>Case kFrameYears</SourceLine>
+   <SourceLine>Dim iNewYears, iCurrentDay, iCurrentMonth As Integer</SourceLine>
+   <SourceLine>iCurrentDay = me.CurrentDate.Day</SourceLine>
+   <SourceLine>iCurrentMonth = me.CurrentDate.Month</SourceLine>
+   <SourceLine>iNewYears = me.CurrentDate.Year + 1</SourceLine>
+   <SourceLine>If iNewYears &gt; 9999 Then iNewYears = 0</SourceLine>
+   <SourceLine>me.CurrentDate.Year = iNewYears</SourceLine>
+   <SourceLine>me.CurrentDate.Month = iCurrentMonth</SourceLine>
+   <SourceLine>If DaysInMonth(me.CurrentDate) &lt; iCurrentDay Then iCurrentDay = DaysInMonth(me.CurrentDate)</SourceLine>
+   <SourceLine>me.CurrentDate.Day = iCurrentDay</SourceLine>
+   <SourceLine>RaiseEvent DateChanged()</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameYears)</SourceLine>
+   <SourceLine>Case kFrameMonths</SourceLine>
+   <SourceLine>Dim iNewMonths, iCurrentDay, iCurrentYear As Integer</SourceLine>
+   <SourceLine>iCurrentDay = me.CurrentDate.Day</SourceLine>
+   <SourceLine>iCurrentYear = me.CurrentDate.Year</SourceLine>
+   <SourceLine>iNewMonths = me.CurrentDate.Month + 1</SourceLine>
+   <SourceLine>If iNewMonths &gt; 12 Then iNewMonths = 1</SourceLine>
+   <SourceLine>me.CurrentDate.Year = iCurrentYear</SourceLine>
+   <SourceLine>me.CurrentDate.Month = iNewMonths</SourceLine>
+   <SourceLine>If DaysInMonth(me.CurrentDate) &lt; iCurrentDay Then iCurrentDay = DaysInMonth(me.CurrentDate)</SourceLine>
+   <SourceLine>me.CurrentDate.Day = iCurrentDay</SourceLine>
+   <SourceLine>RaiseEvent DateChanged()</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameMonths)</SourceLine>
+   <SourceLine>Case kFrameDays</SourceLine>
+   <SourceLine>Dim iNewDays, iCurrentMonth, iCurrentYear As Integer</SourceLine>
+   <SourceLine>iCurrentMonth = me.CurrentDate.Month</SourceLine>
+   <SourceLine>iCurrentYear = me.CurrentDate.Year</SourceLine>
+   <SourceLine>iNewDays = me.CurrentDate.Day + 1</SourceLine>
+   <SourceLine>If iNewDays &gt; DaysInMonth(me.CurrentDate) Then iNewDays = 1</SourceLine>
+   <SourceLine>me.CurrentDate.Year = iCurrentYear</SourceLine>
+   <SourceLine>me.CurrentDate.Month = iCurrentMonth</SourceLine>
+   <SourceLine>me.CurrentDate.Day = iNewDays</SourceLine>
+   <SourceLine>RaiseEvent DateChanged()</SourceLine>
+   <SourceLine>me.UpdateDateDisplay(kFrameDays)</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>UpdateDateDisplay</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub UpdateDateDisplay(iAutoSelectFrame As Integer)</SourceLine>
+   <SourceLine>Dim bAssSel As Boolean</SourceLine>
+   <SourceLine>Dim sYear, sMonth, sDay, sFinal As String</SourceLine>
+   <SourceLine>Dim i, iEnd As Integer</SourceLine>
+   <SourceLine>Dim dFrameType2Index As Dictionary</SourceLine>
+   <SourceLine>Dim iCurrentPos As Integer = 0</SourceLine>
+   <SourceLine>Dim sFinalString() As String</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>bAssSel = me.assigningSelection</SourceLine>
+   <SourceLine>me.assigningSelection = True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.FormatDateSep = "/"</SourceLine>
+   <SourceLine>me.FormatLeadingZeroDay = True</SourceLine>
+   <SourceLine>me.FormatLeadingZeroMonth = True</SourceLine>
+   <SourceLine>me.FormatShowCentury = False</SourceLine>
+   <SourceLine>me.FormatDateOrder(0) = kFrameMonths</SourceLine>
+   <SourceLine>me.FormatDateOrder(1) = kFrameDays</SourceLine>
+   <SourceLine>me.FormatDateOrder(2) = kFrameYears</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>'#If TargetMacOS Then</SourceLine>
+   <SourceLine>'Dim myNumberFormat As NumberFormatMBS</SourceLine>
+   <SourceLine>'myNumberFormat = New NumberFormatMBS</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'If myNumberFormat.OK Then</SourceLine>
+   <SourceLine>'me.FormatDateSep = myNumberFormat.DateSeparator</SourceLine>
+   <SourceLine>'me.FormatLeadingZeroDay = myNumberFormat.ShowLeadingZeroForDay</SourceLine>
+   <SourceLine>'me.FormatLeadingZeroMonth = myNumberFormat.ShowLeadingZeroForMonth</SourceLine>
+   <SourceLine>'me.FormatShowCentury = myNumberFormat.ShowCentury</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'Dim sDateOrder() As String</SourceLine>
+   <SourceLine>'sDateOrder = Split(myNumberFormat.DateOrder,"")</SourceLine>
+   <SourceLine>'iEnd = uBound(sDateOrder)</SourceLine>
+   <SourceLine>'If iEnd = 2 Then</SourceLine>
+   <SourceLine>'For i = 0 to iEnd</SourceLine>
+   <SourceLine>'Select Case sDateOrder(i)</SourceLine>
+   <SourceLine>'Case "y"</SourceLine>
+   <SourceLine>'FormatDateOrder(i) = kFrameYears</SourceLine>
+   <SourceLine>'Case "m"</SourceLine>
+   <SourceLine>'FormatDateOrder(i) = kFrameMonths</SourceLine>
+   <SourceLine>'Case "d"</SourceLine>
+   <SourceLine>'FormatDateOrder(i) = kFrameDays</SourceLine>
+   <SourceLine>'End Select</SourceLine>
+   <SourceLine>'Next</SourceLine>
+   <SourceLine>'bFoundFormat = True</SourceLine>
+   <SourceLine>'Else</SourceLine>
+   <SourceLine>'bFoundFormat = False</SourceLine>
+   <SourceLine>'End If</SourceLine>
+   <SourceLine>'End If</SourceLine>
+   <SourceLine>'#ElseIf TargetWin32 Then</SourceLine>
+   <SourceLine>'Dim myWinNumberFormat As WinLocalizationMBS</SourceLine>
+   <SourceLine>'myWinNumberFormat = New WinLocalizationMBS(True)</SourceLine>
+   <SourceLine>'If myWinNumberFormat &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>'me.FormatDateSep = myWinNumberFormat.DateSeparator</SourceLine>
+   <SourceLine>'me.FormatLeadingZeroDay = myWinNumberFormat.DateLeadingZerosDay</SourceLine>
+   <SourceLine>'me.FormatLeadingZeroMonth = myWinNumberFormat.DateLeadingZerosMonth</SourceLine>
+   <SourceLine>'me.FormatShowCentury = True</SourceLine>
+   <SourceLine>'Select Case myWinNumberFormat.DateShortFormatOrdering</SourceLine>
+   <SourceLine>'Case "0"</SourceLine>
+   <SourceLine>'me.FormatDateOrder(0) = kFrameMonths</SourceLine>
+   <SourceLine>'me.FormatDateOrder(1) = kFrameDays</SourceLine>
+   <SourceLine>'me.FormatDateOrder(2) = kFrameYears</SourceLine>
+   <SourceLine>'Case "1"</SourceLine>
+   <SourceLine>'me.FormatDateOrder(0) = kFrameDays</SourceLine>
+   <SourceLine>'me.FormatDateOrder(1) = kFrameMonths</SourceLine>
+   <SourceLine>'me.FormatDateOrder(2) = kFrameYears</SourceLine>
+   <SourceLine>'Case "2"</SourceLine>
+   <SourceLine>'me.FormatDateOrder(0) = kFrameYears</SourceLine>
+   <SourceLine>'me.FormatDateOrder(1) = kFrameMonths</SourceLine>
+   <SourceLine>'me.FormatDateOrder(2) = kFrameDays</SourceLine>
+   <SourceLine>'End Select</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'bFoundFormat = True</SourceLine>
+   <SourceLine>'End If</SourceLine>
+   <SourceLine>'#EndIf</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.FormatShowCentury = True //We do not handle False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatShowCentury Then</SourceLine>
+   <SourceLine>sYear = Format(CurrentDate.Year,"0000")</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Raise New UnsupportedFormatException</SourceLine>
+   <SourceLine>End if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatLeadingZeroMonth Then</SourceLine>
+   <SourceLine>sMonth = Format(CurrentDate.Month,"00")</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>sMonth = Format(CurrentDate.Month,"0")</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatLeadingZeroDay Then</SourceLine>
+   <SourceLine>sDay = Format(CurrentDate.Day,"00")</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>sDay = Format(CurrentDate.Day,"0")</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dFrameType2Index = New Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For i = 0 to 2</SourceLine>
+   <SourceLine>Dim sWorkingString As String</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Select Case FormatDateOrder(i)</SourceLine>
+   <SourceLine>Case kFrameDays</SourceLine>
+   <SourceLine>sWorkingString = sDay</SourceLine>
+   <SourceLine>iPositionDayStart = iCurrentPos</SourceLine>
+   <SourceLine>iPositionDayLength = Len(sWorkingString)</SourceLine>
+   <SourceLine>dFrameType2Index.Value(kFrameDays) = i</SourceLine>
+   <SourceLine>Case kFrameMonths</SourceLine>
+   <SourceLine>sWorkingString = sMonth</SourceLine>
+   <SourceLine>iPositionMonthStart = iCurrentPos</SourceLine>
+   <SourceLine>iPositionMonthLength = Len(sWorkingString)</SourceLine>
+   <SourceLine>dFrameType2Index.Value(kFrameMonths) = i</SourceLine>
+   <SourceLine>Case kFrameYears</SourceLine>
+   <SourceLine>sWorkingString = sYear</SourceLine>
+   <SourceLine>iPositionYearStart = iCurrentPos</SourceLine>
+   <SourceLine>iPositionYearLength = Len(sWorkingString)</SourceLine>
+   <SourceLine>dFrameType2Index.Value(kFrameYears) = i</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>sFinalString.Append sWorkingString</SourceLine>
+   <SourceLine>iCurrentPos = iCurrentPos + Len(sWorkingString)</SourceLine>
+   <SourceLine>If i &lt;&gt; 2 Then iCurrentPos = iCurrentPos +  Len(me.FormatDateSep)</SourceLine>
+   <SourceLine>Next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.Text = Join(sFinalString,me.FormatDateSep)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Dim iFinalSelectFrame As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iFinalSelectFrame = iAutoSelectFrame</SourceLine>
+   <SourceLine>Select Case iFinalSelectFrame</SourceLine>
+   <SourceLine>Case kSelectFrameFirstFrame</SourceLine>
+   <SourceLine>iFinalSelectFrame = FormatDateOrder(0)</SourceLine>
+   <SourceLine>Case kSelFrameNext</SourceLine>
+   <SourceLine>iFinalSelectFrame = me.FormatDateOrder(dFrameType2Index.Value(me.iLastFrameType) +1)</SourceLine>
+   <SourceLine>Case kSelFramePrev</SourceLine>
+   <SourceLine>iFinalSelectFrame = me.FormatDateOrder(dFrameType2Index.Value(me.iLastFrameType) -1)</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.HasFocus Then</SourceLine>
+   <SourceLine>Select Case iFinalSelectFrame</SourceLine>
+   <SourceLine>Case kFrameDays</SourceLine>
+   <SourceLine>me.SelStart = iPositionDayStart</SourceLine>
+   <SourceLine>me.SelLength = iPositionDayLength</SourceLine>
+   <SourceLine>Case kFrameMonths</SourceLine>
+   <SourceLine>me.SelStart = iPositionMonthStart</SourceLine>
+   <SourceLine>me.SelLength = iPositionMonthLength</SourceLine>
+   <SourceLine>Case kFrameYears</SourceLine>
+   <SourceLine>me.SelStart = iPositionYearStart</SourceLine>
+   <SourceLine>me.SelLength = iPositionYearLength</SourceLine>
+   <SourceLine>Else //kFrameNone</SourceLine>
+   <SourceLine>me.SelStart = 0</SourceLine>
+   <SourceLine>me.SelLength = 0</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>me.iLastFrameType = iFinalSelectFrame</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>me.SelStart = 0</SourceLine>
+   <SourceLine>me.SelLength = 0</SourceLine>
+   <SourceLine>me.iLastFrameType = kSelectFrameNone</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.assigningSelection = bAssSel</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>iAutoSelectFrame As Integer</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Hook>
+  <ItemName>DateChanged</ItemName>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemFlags>33</ItemFlags>
+  <SystemFlags>0</SystemFlags>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Hook>
+ <Hook>
+  <ItemName>Open</ItemName>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemFlags>33</ItemFlags>
+  <SystemFlags>0</SystemFlags>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Hook>
+ <Note>
+  <ItemName>Credits</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>Credits</NoteLine>
+   <NoteLine>This open source module was created by Josh Hague of Koingo Software.</NoteLine>
+   <NoteLine>main@koingosw.com</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Please visit our web site for more REALbasic additions:</NoteLine>
+   <NoteLine>http://www.koingosw.com/products/realbasicadditions.php</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Please also consider donating via PayPal to: websales@koingosw.com</NoteLine>
+   <NoteLine>To encourage continued updates and other free, open source, additions.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This class requires the MonkeyBreadSoftware plugins to obtain</NoteLine>
+   <NoteLine>localization information.</NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Note>
+  <ItemName>Legal</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>Legal</NoteLine>
+   <NoteLine>This class may be used in your own projects, built or otherwise, without cost or credit.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This class may not be redistributed in its original or modified form without the explicit</NoteLine>
+   <NoteLine>consent of Josh Hague of Koingo Software.</NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Note>
+  <ItemName>Release Notes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>Release Notes</NoteLine>
+   <NoteLine>Version 1.0 - December 1, 2008</NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>assigningSelection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>assigningSelection As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>assigningSelection As Boolean</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>CurrentDate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>CurrentDate As Date</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>CurrentDate As Date</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatDateOrder(2)</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatDateOrder(2) As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatDateOrder(2) As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatDateSep</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatDateSep As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatDateSep As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatLeadingZeroDay</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatLeadingZeroDay As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatLeadingZeroDay As Boolean</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatLeadingZeroMonth</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatLeadingZeroMonth As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatLeadingZeroMonth As Boolean</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatShowCentury</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatShowCentury As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatShowCentury As Boolean</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>HasFocus</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>HasFocus As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>HasFocus As Boolean</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iLastFrameDateOrderIndex</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iLastFrameDateOrderIndex As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iLastFrameDateOrderIndex As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iLastFrameType</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iLastFrameType As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iLastFrameType As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iLastSelStart</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iLastSelStart As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iLastSelStart As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionDayLength</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionDayLength As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionDayLength As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionDayStart</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionDayStart As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionDayStart As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionMonthLength</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionMonthLength As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionMonthLength As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionMonthStart</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionMonthStart As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionMonthStart As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionYearLength</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionYearLength As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionYearLength As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionYearStart</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionYearStart As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionYearStart As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>AutomaticallyCheckSpelling</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>boolean</ItemType>
+   <InheritsFrom>TextField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AcceptTabs</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Alignment</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <EditorType>Enum</EditorType>
+   <InheritsFrom>EditField</InheritsFrom>
+   <Enumeration>
+    <ItemDef>0 - Default</ItemDef>
+    <ItemDef>1 - Left</ItemDef>
+    <ItemDef>2 - Center</ItemDef>
+    <ItemDef>3 - Right</ItemDef>
+   </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AutoDeactivate</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>BackColor</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>&amp;hFFFFFF</PropertyValue>
+   <ItemType>Color</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Bold</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Border</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>CueText</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Initial State</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+   <InheritsFrom>TextField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>DataField</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Database Binding</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>DataField</EditorType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>DataSource</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Database Binding</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>DataSource</EditorType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Enabled</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Format</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>String</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HasFocus</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Height</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>22</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HelpTag</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Italic</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LimitText</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LockBottom</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LockLeft</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LockRight</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LockTop</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Mask</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Password</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>ReadOnly</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TabIndex</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TabPanelIndex</ObjName>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TabStop</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Text</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Initial State</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TextColor</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>&amp;h000000</PropertyValue>
+   <ItemType>Color</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TextFont</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>System</PropertyValue>
+   <ItemType>String</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TextSize</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TextUnit</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>FontUnits</ItemType>
+   <EditorType>Enum</EditorType>
+   <InheritsFrom>TextField</InheritsFrom>
+   <Enumeration>
+    <ItemDef>0 - Default</ItemDef>
+    <ItemDef>1 - Pixel</ItemDef>
+    <ItemDef>2 - Point</ItemDef>
+    <ItemDef>3 - Inch</ItemDef>
+    <ItemDef>4 - Millimeter</ItemDef>
+   </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Underline</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>UseFocusRing</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Visible</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Width</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>90</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+ <Constant>
+  <ItemName>kFrameDays</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kFrameDays</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>3</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kFrameMonths</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kFrameMonths</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>2</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kFrameYears</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kFrameYears</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>1</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kSelectFrameFirstFrame</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kSelectFrameFirstFrame</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>-1</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kSelectFrameNone</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kSelectFrameNone</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>0</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kSelFrameNext</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kSelFrameNext</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>-2</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kSelFramePrev</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kSelFramePrev</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>-3</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+</block>
+</RBProject>

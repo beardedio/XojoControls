@@ -1,0 +1,1188 @@
+<?xml version="1.0"?>
+<RBProject version="2012r2.1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="1324966019">
+ <ObjName>MyTimeField</ObjName>
+ <ObjContainerID>1333785165</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>TextField</Superclass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <HookInstance>
+  <ItemName>GotFocus</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub GotFocus()</SourceLine>
+   <SourceLine>me.HasFocus = True</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(kFrameHours)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>KeyDown</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function KeyDown(Key As String) As Boolean</SourceLine>
+   <SourceLine>Select Case me.iLastFrame</SourceLine>
+   <SourceLine>Case kFrameHours</SourceLine>
+   <SourceLine>//Hours</SourceLine>
+   <SourceLine>Select Case Asc(Key)</SourceLine>
+   <SourceLine>Case 9, 29 //Tab/Right</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(kFrameMinutes)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Case 28 //Left</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Case 30 //Up</SourceLine>
+   <SourceLine>me.Up()</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Case 31 //Down</SourceLine>
+   <SourceLine>me.Down()</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Dim iCombinedValue, iHourValue As Integer</SourceLine>
+   <SourceLine>If Not IsNumeric(Key) Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatHasHourLeadingZero Then</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelText,2) + Key)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelText,1) + Key)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatIs24Hr Then</SourceLine>
+   <SourceLine>If iCombinedValue &gt; 23 Then</SourceLine>
+   <SourceLine>iHourValue = Val(Key)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iHourValue = iCombinedValue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>If me.CurrentTime.Hour &gt;= 12 Then //PM</SourceLine>
+   <SourceLine>//Keep it PM</SourceLine>
+   <SourceLine>If iCombinedValue &gt; 12 Then</SourceLine>
+   <SourceLine>iHourValue = 12 + Val(Key) //Higher than 23, make it</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iHourValue = 12 + iCombinedValue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>If iHourValue = 24 Then iHourValue = 12</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>//Keep it AM</SourceLine>
+   <SourceLine>If iCombinedValue &gt; 12 Then</SourceLine>
+   <SourceLine>iHourValue = Val(Key)</SourceLine>
+   <SourceLine>ElseIf iCombinedValue = 12 Then</SourceLine>
+   <SourceLine>iHourValue = 0</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iHourValue = iCombinedValue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.CurrentTime.Hour = iHourValue</SourceLine>
+   <SourceLine>RaiseEvent TimeChanged()</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>Case kFrameMinutes</SourceLine>
+   <SourceLine>//Minutes</SourceLine>
+   <SourceLine>Select Case Asc(Key)</SourceLine>
+   <SourceLine>Case 9, 29 //Tab/Right</SourceLine>
+   <SourceLine>If Not me.FormatIs24Hr Then me.UpdateTimeDisplay(kFrameAMPM)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Case 28 //Left</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(kFrameHours)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Case 30 //Up</SourceLine>
+   <SourceLine>me.Up()</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Case 31 //Down</SourceLine>
+   <SourceLine>me.Down()</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Dim iCombinedValue, iMinuteValue As Integer</SourceLine>
+   <SourceLine>If Not IsNumeric(Key) Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatHasMinuteLeadingZero Then</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelText,2) + Key)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelText,1) + Key)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If iCombinedValue &gt; 59 Then //PM</SourceLine>
+   <SourceLine>iMinuteValue = Val(Key)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iMinuteValue = iCombinedValue</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>me.CurrentTime.Minute = iMinuteValue</SourceLine>
+   <SourceLine>RaiseEvent TimeChanged()</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>Case kFrameAMPM</SourceLine>
+   <SourceLine>//AMPM</SourceLine>
+   <SourceLine>Select Case Asc(Key)</SourceLine>
+   <SourceLine>Case 9</SourceLine>
+   <SourceLine>Return False //Tab next control</SourceLine>
+   <SourceLine>Case 28 //Left</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(kFrameMinutes)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Case 29 //right</SourceLine>
+   <SourceLine>Return True //do nothing</SourceLine>
+   <SourceLine>Case 30, 31 //Up -- just flip it</SourceLine>
+   <SourceLine>me.Up() //or down</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False //Unhandled Key</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>//No selection/invalid</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(me.iLastFrame)</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>LostFocus</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub LostFocus()</SourceLine>
+   <SourceLine>me.HasFocus = False</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(kFrameNone)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>MouseDown</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function MouseDown(X As Integer, Y As Integer) As Boolean</SourceLine>
+   <SourceLine>Dim iChar As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Not me.HasFocus Then me.SetFocus()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iChar = me.CharPosAtXY(X,Y)</SourceLine>
+   <SourceLine>If iChar &gt;= iPositionHourStart and iChar &lt;= iPositionHourStart + iPositionHourLength Then</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(kFrameHours)</SourceLine>
+   <SourceLine>ElseIf iChar &gt;= iPositionMinuteStart and iChar &lt;= iPositionMinuteStart + iPositionMinuteLength Then</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(kFrameMinutes)</SourceLine>
+   <SourceLine>ElseIf iChar &gt;= iPositionAMPMStart and iChar &lt;= iPositionAMPMStart + iPositionAMPMLength Then</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(kFrameAMPM)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(kFrameNone)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>Open</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Open()</SourceLine>
+   <SourceLine>Dim bAssOrig As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.CurrentTime = New Date</SourceLine>
+   <SourceLine>me.ReadOnly = True</SourceLine>
+   <SourceLine>me.AcceptTabs = True</SourceLine>
+   <SourceLine>me.Alignment = EditField.AlignRight</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(kFrameNone)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>RaiseEvent Open()</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>SelChange</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SelChange()</SourceLine>
+   <SourceLine>If me.assigningSelection Then Return</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.HasFocus Then</SourceLine>
+   <SourceLine>Dim iShouldBeStart, iShouldBeLength, iChar As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iChar = me.SelStart</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If iChar &gt;= iPositionHourStart and iChar &lt;= iPositionHourStart + iPositionHourLength Then</SourceLine>
+   <SourceLine>If Not me.HasFocus Then me.SetFocus()</SourceLine>
+   <SourceLine>iShouldBeStart = iPositionHourStart</SourceLine>
+   <SourceLine>iShouldBeLength = iPositionHourLength</SourceLine>
+   <SourceLine>me.iLastFrame = kFrameHours</SourceLine>
+   <SourceLine>ElseIf iChar &gt;= iPositionMinuteStart and iChar &lt;= iPositionMinuteStart + iPositionMinuteLength Then</SourceLine>
+   <SourceLine>If Not me.HasFocus Then me.SetFocus()</SourceLine>
+   <SourceLine>iShouldBeStart = iPositionMinuteStart</SourceLine>
+   <SourceLine>iShouldBeLength = iPositionMinuteLength</SourceLine>
+   <SourceLine>me.iLastFrame = kFrameMinutes</SourceLine>
+   <SourceLine>ElseIf iChar &gt;= iPositionAMPMStart and iChar &lt;= iPositionAMPMStart + iPositionAMPMLength Then</SourceLine>
+   <SourceLine>If Not me.HasFocus Then me.SetFocus()</SourceLine>
+   <SourceLine>iShouldBeStart = iPositionAMPMStart</SourceLine>
+   <SourceLine>iShouldBeLength = iPositionAMPMLength</SourceLine>
+   <SourceLine>me.iLastFrame = kFrameAMPM</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>iShouldBeStart = 0</SourceLine>
+   <SourceLine>iShouldBeLength = 0</SourceLine>
+   <SourceLine>me.iLastFrame = kFrameNone</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.SelStart &lt;&gt; iShouldBeStart or me.SelStart &lt;&gt; iShouldBeLength Then</SourceLine>
+   <SourceLine>Dim bAssSel As Boolean</SourceLine>
+   <SourceLine>bAssSel = me.assigningSelection</SourceLine>
+   <SourceLine>me.assigningSelection = True</SourceLine>
+   <SourceLine>me.SelStart = iShouldBeStart</SourceLine>
+   <SourceLine>me.SelLength = iShouldBeLength</SourceLine>
+   <SourceLine>me.assigningSelection = bAssSel</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Dim bAssSel As Boolean</SourceLine>
+   <SourceLine>bAssSel = me.assigningSelection</SourceLine>
+   <SourceLine>me.assigningSelection = True</SourceLine>
+   <SourceLine>me.SelStart = 0</SourceLine>
+   <SourceLine>me.SelLength = 0</SourceLine>
+   <SourceLine>me.iLastFrame = kFrameNone</SourceLine>
+   <SourceLine>me.assigningSelection = bAssSel</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <Method>
+  <ItemName>Down</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Down()</SourceLine>
+   <SourceLine>Select Case me.iLastFrame</SourceLine>
+   <SourceLine>Case kFrameHours</SourceLine>
+   <SourceLine>//Hours</SourceLine>
+   <SourceLine>Dim iNewHour As Integer</SourceLine>
+   <SourceLine>iNewHour = me.CurrentTime.Hour -1</SourceLine>
+   <SourceLine>If iNewHour &lt; 0 Then iNewHour = 23</SourceLine>
+   <SourceLine>me.CurrentTime.Hour = iNewHour</SourceLine>
+   <SourceLine>RaiseEvent TimeChanged()</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(me.iLastFrame)</SourceLine>
+   <SourceLine>Case kFrameMinutes</SourceLine>
+   <SourceLine>//Minutes</SourceLine>
+   <SourceLine>Dim iNewMinutes As Integer</SourceLine>
+   <SourceLine>iNewMinutes = me.CurrentTime.Minute -1</SourceLine>
+   <SourceLine>If iNewMinutes &lt; 0 Then iNewMinutes = 59</SourceLine>
+   <SourceLine>me.CurrentTime.Minute = iNewMinutes</SourceLine>
+   <SourceLine>RaiseEvent TimeChanged()</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(me.iLastFrame)</SourceLine>
+   <SourceLine>Case kFrameAMPM</SourceLine>
+   <SourceLine>//AMPM</SourceLine>
+   <SourceLine>If me.CurrentTime.Hour &gt;= 12 Then</SourceLine>
+   <SourceLine>me.CurrentTime.Hour = me.CurrentTime.Hour-12</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>me.CurrentTime.Hour = me.CurrentTime.Hour+12</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>RaiseEvent TimeChanged()</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(me.iLastFrame)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>//No selection/invalid</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetCurrentTime</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetCurrentTime() As Date</SourceLine>
+   <SourceLine>Return me.CurrentTime</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult>Date</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SetCurrentTime</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SetCurrentTime(d As Date)</SourceLine>
+   <SourceLine>If d = Nil Then</SourceLine>
+   <SourceLine>me.CurrentTime = New Date</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>me.CurrentTime.TotalSeconds = d.TotalSeconds</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>RaiseEvent TimeChanged()</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(iLastFrame)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>d As Date</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Up</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Up()</SourceLine>
+   <SourceLine>Select Case me.iLastFrame</SourceLine>
+   <SourceLine>Case kFrameHours</SourceLine>
+   <SourceLine>//Hours</SourceLine>
+   <SourceLine>Dim iNewHour As Integer</SourceLine>
+   <SourceLine>iNewHour = me.CurrentTime.Hour +1</SourceLine>
+   <SourceLine>If iNewHour &gt; 23 Then iNewHour = 0</SourceLine>
+   <SourceLine>me.CurrentTime.Hour = iNewHour</SourceLine>
+   <SourceLine>RaiseEvent TimeChanged()</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(me.iLastFrame)</SourceLine>
+   <SourceLine>Case kFrameMinutes</SourceLine>
+   <SourceLine>//Minutes</SourceLine>
+   <SourceLine>Dim iNewMinutes As Integer</SourceLine>
+   <SourceLine>iNewMinutes = me.CurrentTime.Minute +1</SourceLine>
+   <SourceLine>If iNewMinutes &gt; 59 Then iNewMinutes = 0</SourceLine>
+   <SourceLine>me.CurrentTime.Minute = iNewMinutes</SourceLine>
+   <SourceLine>RaiseEvent TimeChanged()</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(me.iLastFrame)</SourceLine>
+   <SourceLine>Case kFrameAMPM</SourceLine>
+   <SourceLine>//AMPM</SourceLine>
+   <SourceLine>If me.CurrentTime.Hour &gt;= 12 Then</SourceLine>
+   <SourceLine>me.CurrentTime.Hour = me.CurrentTime.Hour-12</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>me.CurrentTime.Hour = me.CurrentTime.Hour+12</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>RaiseEvent TimeChanged()</SourceLine>
+   <SourceLine>me.UpdateTimeDisplay(me.iLastFrame)</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>//No selection/invalid</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>UpdateTimeDisplay</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub UpdateTimeDisplay(iAutoSelectFrame As Integer)</SourceLine>
+   <SourceLine>Dim sHour, sMinute, sAMPM, sSpacer As String</SourceLine>
+   <SourceLine>Dim bAssSel As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>bAssSel = me.assigningSelection</SourceLine>
+   <SourceLine>me.assigningSelection = True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.FormatAMStr = " AM"</SourceLine>
+   <SourceLine>me.FormatPMStr = " PM"</SourceLine>
+   <SourceLine>me.FormatTimeSepStr = ":"</SourceLine>
+   <SourceLine>me.FormatIs24Hr = False</SourceLine>
+   <SourceLine>me.FormatHasHourLeadingZero = True</SourceLine>
+   <SourceLine>me.FormatHasMinuteLeadingZero = True</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>'#If TargetMacOS Then</SourceLine>
+   <SourceLine>'Dim myNumberFormat As NumberFormatMBS</SourceLine>
+   <SourceLine>'myNumberFormat = New NumberFormatMBS</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'If myNumberFormat.OK Then</SourceLine>
+   <SourceLine>'me.FormatAMStr = myNumberFormat.MorningPrefix</SourceLine>
+   <SourceLine>'me.FormatPMStr = myNumberFormat.EveningPrefix</SourceLine>
+   <SourceLine>'me.FormatTimeSepStr = myNumberFormat.TimeSeparator</SourceLine>
+   <SourceLine>'me.FormatIs24Hr = (myNumberFormat.TimeCycle = 0)</SourceLine>
+   <SourceLine>'me.FormatHasHourLeadingZero = myNumberFormat.LeadingZeroForHours</SourceLine>
+   <SourceLine>'me.FormatHasMinuteLeadingZero = myNumberFormat.LeadingZeroForMinutes</SourceLine>
+   <SourceLine>'bFoundFormat = True</SourceLine>
+   <SourceLine>'End If</SourceLine>
+   <SourceLine>'#ElseIf TargetWin32 Then</SourceLine>
+   <SourceLine>'Dim myWinNumberFormat As WinLocalizationMBS</SourceLine>
+   <SourceLine>'myWinNumberFormat = New WinLocalizationMBS(True)</SourceLine>
+   <SourceLine>'If myWinNumberFormat &lt;&gt; Nil Then</SourceLine>
+   <SourceLine>'me.FormatAMStr = myWinNumberFormat.TimeAM</SourceLine>
+   <SourceLine>'me.FormatPMStr = myWinNumberFormat.TimePM</SourceLine>
+   <SourceLine>'me.FormatTimeSepStr = myWinNumberFormat.TimeSeparator</SourceLine>
+   <SourceLine>'me.FormatIs24Hr = (myWinNumberFormat.TimeFormatSpecifier = "1")</SourceLine>
+   <SourceLine>'me.FormatHasHourLeadingZero = (myWinNumberFormat.TimeLeadingZeros = "1")</SourceLine>
+   <SourceLine>'me.FormatHasMinuteLeadingZero = True</SourceLine>
+   <SourceLine>'bFoundFormat = True</SourceLine>
+   <SourceLine>'End If</SourceLine>
+   <SourceLine>'#EndIf</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatIs24Hr Then</SourceLine>
+   <SourceLine>If me.FormatHasHourLeadingZero Then</SourceLine>
+   <SourceLine>sHour = Format(CurrentTime.Hour,"00")</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>sHour = Format(CurrentTime.Hour,"0")</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Dim iHour As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iHour = CurrentTime.Hour</SourceLine>
+   <SourceLine>If iHour = 0 Then</SourceLine>
+   <SourceLine>iHour = 12</SourceLine>
+   <SourceLine>ElseIf iHour &gt; 12 Then</SourceLine>
+   <SourceLine>iHour = iHour-12</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>//Keep current</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatHasHourLeadingZero Then</SourceLine>
+   <SourceLine>sHour = Format(iHour,"00")</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>sHour = Format(iHour,"0")</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatHasMinuteLeadingZero Then</SourceLine>
+   <SourceLine>sMinute = Format(CurrentTime.Minute,"00")</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>sMinute = Format(CurrentTime.Minute,"0")</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Not me.FormatIs24Hr Then</SourceLine>
+   <SourceLine>If CurrentTime.Hour &gt;= 12 Then</SourceLine>
+   <SourceLine>sAMPM = me.FormatPMStr</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>sAMPM = me.FormatAMStr</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iPositionHourStart = 0</SourceLine>
+   <SourceLine>iPositionHourLength = Len(sHour)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>iPositionMinuteStart = iPositionHourStart + iPositionHourLength + Len(me.FormatTimeSepStr)</SourceLine>
+   <SourceLine>iPositionMinuteLength = Len(sMinute)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.FormatIs24Hr Then</SourceLine>
+   <SourceLine>iPositionAMPMStart = -1</SourceLine>
+   <SourceLine>iPositionAMPMLength = 0</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Dim iPaddingLength As Integer</SourceLine>
+   <SourceLine>iPaddingLength = Len(sAMPM) - Len(Trim(sAMPM))</SourceLine>
+   <SourceLine>iPositionAMPMStart = iPositionMinuteStart + iPositionMinuteLength + iPaddingLength</SourceLine>
+   <SourceLine>iPositionAMPMLength = Len(sAMPM) - iPaddingLength</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.Text = sHour + me.FormatTimeSepStr + sMinute + sSpacer + sAMPM</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If me.HasFocus Then</SourceLine>
+   <SourceLine>Select Case iAutoSelectFrame</SourceLine>
+   <SourceLine>Case kFrameHours</SourceLine>
+   <SourceLine>me.SelStart = iPositionHourStart</SourceLine>
+   <SourceLine>me.SelLength = iPositionHourLength</SourceLine>
+   <SourceLine>Case kFrameMinutes</SourceLine>
+   <SourceLine>me.SelStart = iPositionMinuteStart</SourceLine>
+   <SourceLine>me.SelLength = iPositionMinuteLength</SourceLine>
+   <SourceLine>Case kFrameAMPM</SourceLine>
+   <SourceLine>me.SelStart = iPositionAMPMStart</SourceLine>
+   <SourceLine>me.SelLength = iPositionAMPMLength</SourceLine>
+   <SourceLine>Else //kFrameNone</SourceLine>
+   <SourceLine>me.SelStart = 0</SourceLine>
+   <SourceLine>me.SelLength = 0</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine>me.iLastFrame = iAutoSelectFrame</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>me.SelStart = 0</SourceLine>
+   <SourceLine>me.SelLength = 0</SourceLine>
+   <SourceLine>me.iLastFrame = kFrameNone</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.assigningSelection = bAssSel</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>iAutoSelectFrame As Integer</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Hook>
+  <ItemName>Open</ItemName>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemFlags>33</ItemFlags>
+  <SystemFlags>0</SystemFlags>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Hook>
+ <Hook>
+  <ItemName>TimeChanged</ItemName>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemFlags>33</ItemFlags>
+  <SystemFlags>0</SystemFlags>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Hook>
+ <Note>
+  <ItemName>Credits</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>Credits</NoteLine>
+   <NoteLine>This open source module was created by Josh Hague of Koingo Software.</NoteLine>
+   <NoteLine>main@koingosw.com</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Please visit our web site for more REALbasic additions:</NoteLine>
+   <NoteLine>http://www.koingosw.com/products/realbasicadditions.php</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>Please also consider donating via PayPal to: websales@koingosw.com</NoteLine>
+   <NoteLine>To encourage continued updates and other free, open source, additions.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This class requires the MonkeyBreadSoftware plugins to obtain</NoteLine>
+   <NoteLine>localization information.</NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Note>
+  <ItemName>Legal</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>Legal</NoteLine>
+   <NoteLine>This class may be used in your own projects, built or otherwise, without cost or credit.</NoteLine>
+   <NoteLine></NoteLine>
+   <NoteLine>This class may not be redistributed in its original or modified form without the explicit</NoteLine>
+   <NoteLine>consent of Josh Hague of Koingo Software.</NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Note>
+  <ItemName>Release Notes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <NoteLine>Release Notes</NoteLine>
+   <NoteLine>Version 1.0 - December 1, 2008</NoteLine>
+  </ItemSource>
+  <ItemFlags>0</ItemFlags>
+ </Note>
+ <Property>
+  <ItemName>assigningSelection</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>assigningSelection As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>assigningSelection As Boolean</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>CurrentTime</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>CurrentTime As Date</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>CurrentTime As Date</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatAMStr</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatAMStr As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatAMStr As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatHasHourLeadingZero</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatHasHourLeadingZero As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatHasHourLeadingZero As Boolean</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatHasMinuteLeadingZero</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatHasMinuteLeadingZero As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatHasMinuteLeadingZero As Boolean</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatIs24Hr</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatIs24Hr As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatIs24Hr As Boolean</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatPMStr</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatPMStr As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatPMStr As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>FormatTimeSepStr</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>FormatTimeSepStr As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>FormatTimeSepStr As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>HasFocus</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>HasFocus As Boolean</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>HasFocus As Boolean</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iLastFrame</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iLastFrame As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iLastFrame As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iLastSelStart</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iLastSelStart As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iLastSelStart As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionAMPMLength</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionAMPMLength As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionAMPMLength As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionAMPMStart</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionAMPMStart As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionAMPMStart As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionHourLength</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionHourLength As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionHourLength As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionHourStart</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionHourStart As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionHourStart As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionMinuteLength</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionMinuteLength As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionMinuteLength As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>iPositionMinuteStart</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>iPositionMinuteStart As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>iPositionMinuteStart As Integer</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>AutomaticallyCheckSpelling</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>boolean</ItemType>
+   <InheritsFrom>TextField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AcceptTabs</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Alignment</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <EditorType>Enum</EditorType>
+   <InheritsFrom>EditField</InheritsFrom>
+   <Enumeration>
+    <ItemDef>0 - Default</ItemDef>
+    <ItemDef>1 - Left</ItemDef>
+    <ItemDef>2 - Center</ItemDef>
+    <ItemDef>3 - Right</ItemDef>
+   </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AutoDeactivate</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>BackColor</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>&amp;hFFFFFF</PropertyValue>
+   <ItemType>Color</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Bold</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Border</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>CueText</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Initial State</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+   <InheritsFrom>TextField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>DataField</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Database Binding</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>DataField</EditorType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>DataSource</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Database Binding</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>DataSource</EditorType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Enabled</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Format</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>String</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HasFocus</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Height</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>22</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HelpTag</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Italic</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LimitText</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LockBottom</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LockLeft</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LockRight</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LockTop</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Mask</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Password</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>ReadOnly</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TabIndex</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TabPanelIndex</ObjName>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TabStop</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Text</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Initial State</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TextColor</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>&amp;h000000</PropertyValue>
+   <ItemType>Color</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TextFont</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>System</PropertyValue>
+   <ItemType>String</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TextSize</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TextUnit</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>FontUnits</ItemType>
+   <EditorType>Enum</EditorType>
+   <InheritsFrom>TextField</InheritsFrom>
+   <Enumeration>
+    <ItemDef>0 - Default</ItemDef>
+    <ItemDef>1 - Pixel</ItemDef>
+    <ItemDef>2 - Point</ItemDef>
+    <ItemDef>3 - Inch</ItemDef>
+    <ItemDef>4 - Millimeter</ItemDef>
+   </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Underline</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>UseFocusRing</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Visible</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Width</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>70</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+ <Constant>
+  <ItemName>kFrameAMPM</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kFrameAMPM</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>3</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kFrameHours</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kFrameHours</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>1</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kFrameMinutes</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kFrameMinutes</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>2</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kFrameNone</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>kFrameNone</ItemName>
+  <ItemType>2</ItemType>
+  <ItemDef>0</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+</block>
+</RBProject>

@@ -1,0 +1,421 @@
+<?xml version="1.0"?>
+<RBProject version="2012r2.1" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="364043339">
+ <ObjName>MyRokuSSDPClass</ObjName>
+ <ObjContainerID>0</ObjContainerID>
+ <IsClass>1</IsClass>
+ <Superclass>UDPSocket</Superclass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <HookInstance>
+  <ItemName>DataAvailable</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub DataAvailable()</SourceLine>
+   <SourceLine>ProcessDatagram(Self.Read)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if PropST = "ROKU:ECP" And PropAddress &lt;&gt; "" And PropUUID &lt;&gt; "" AND PropLocation &lt;&gt; "" Then</SourceLine>
+   <SourceLine>Redim devices(DeviceNum)</SourceLine>
+   <SourceLine>devices(DeviceNum).address = PropAddress</SourceLine>
+   <SourceLine>devices(DeviceNum).serial = PropUUID.Left(50)</SourceLine>
+   <SourceLine>devices(DeviceNum).url = PropLocation.Left(50)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>DeviceNum = DeviceNum + 1</SourceLine>
+   <SourceLine>End if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <HookInstance>
+  <ItemName>Error</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Error()</SourceLine>
+   <SourceLine>LogMsg(LogType2_Error, "SSDPSocket: Error["+str(self.LastErrorCode)+"]")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Close</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+ </HookInstance>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine>// Calling the overridden superclass constructor.</SourceLine>
+   <SourceLine>// Note that this may need modifications if there are multiple constructor choices.</SourceLine>
+   <SourceLine>// Possible constructor calls:</SourceLine>
+   <SourceLine>// Constructor() -- From UDPSocket</SourceLine>
+   <SourceLine>// Constructor() -- From SocketCore</SourceLine>
+   <SourceLine>Super.Constructor</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>LogMsg(LogType1_Notice, "SSDPSocket: Construct")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Dim EOL As String = Chr(&amp;h0D)+Chr(&amp;h0A)</SourceLine>
+   <SourceLine>SearchDG = New Datagram</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>SearchDG.Data = ""</SourceLine>
+   <SourceLine>SearchDG.Data = SearchDG.Data + "M-SEARCH * HTTP/1.1" + EOL</SourceLine>
+   <SourceLine>SearchDG.Data = SearchDG.Data + "Host: 239.255.255.250:1900" + EOL</SourceLine>
+   <SourceLine>SearchDG.Data = SearchDG.Data + "Man: ""ssdp:discover"""+EOL</SourceLine>
+   <SourceLine>SearchDG.Data = SearchDG.Data + "ST: roku:ecp"+EOL</SourceLine>
+   <SourceLine>'SearchDG.Data = SearchDG.Data + EOL</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>SearchDG.Address = "239.255.255.250"</SourceLine>
+   <SourceLine>SearchDG.Port = 1900</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.RouterHops = 32</SourceLine>
+   <SourceLine>Self.Port = 0</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>4097</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ProcessDatagram</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ProcessDatagram(dg As Datagram)</SourceLine>
+   <SourceLine>Dim data() As String</SourceLine>
+   <SourceLine>data = Split(Uppercase(Trim(dg.Data)), Chr(&amp;h0D)+Chr(&amp;h0A))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if data(0) = "HTTP/1.1 200 OK" Then</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>PropAddress = dg.Address</SourceLine>
+   <SourceLine>For Each ele As String In data</SourceLine>
+   <SourceLine>If ele.StartsWith("HTTP") Then PropHTTP = ele</SourceLine>
+   <SourceLine>If ele.StartsWith("CACHE-CONTROL: MAX-AGE=") Then PropMaxAge = val(Replace(ele, "CACHE-CONTROL: MAX-AGE=", ""))</SourceLine>
+   <SourceLine>If ele.StartsWith("ST: ") Then PropST = Replace(ele, "ST: ", "")</SourceLine>
+   <SourceLine>If ele.StartsWith("USN: UUID:ROKU:ECP:") Then PropUUID = Replace(ele, "USN: UUID:ROKU:ECP:", "")</SourceLine>
+   <SourceLine>If ele.StartsWith("EXT: ") Then PropExt = Replace(ele, "EXT: ", "")</SourceLine>
+   <SourceLine>If ele.StartsWith("SERVER: ") Then PropServer = Replace(ele, "SERVER: ", "")</SourceLine>
+   <SourceLine>If ele.StartsWith("LOCATION:" ) Then PropLocation = Replace(ele, "LOCATION: ", "")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Next</SourceLine>
+   <SourceLine>End if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>dg As Datagram</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SearchNow</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub SearchNow()</SourceLine>
+   <SourceLine>if Self.IsConnected then</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>'if Self.JoinMulticastGroup(SearchDG.Address) Then</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>DeviceNum = 0</SourceLine>
+   <SourceLine>Self.Write(SearchDG)</SourceLine>
+   <SourceLine>'End if</SourceLine>
+   <SourceLine>End if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Destructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Destructor()</SourceLine>
+   <SourceLine>LogMsg(LogType1_Notice, "SSDPSocket: Destruct")</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Connect</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Connect()</SourceLine>
+   <SourceLine>LogMsg(LogType1_Notice, "SSDPSocket: Connect")</SourceLine>
+   <SourceLine>Super.Connect</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Close</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Close()</SourceLine>
+   <SourceLine>LogMsg(LogType1_Notice, "SSDPSocket: Close")</SourceLine>
+   <SourceLine>Super.Close</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Property>
+  <ItemName>devices(-1)</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>devices(-1) As itemsStruc</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>devices(-1) As itemsStruc</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>PropAddress</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>PropAddress As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>PropAddress As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>PropExt</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>PropExt As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>PropExt As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>PropHTTP</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>PropHTTP As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>PropHTTP As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>PropLocation</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>PropLocation As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>PropLocation As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>PropMaxAge</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>PropMaxAge As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>PropMaxAge As Integer = -1</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>PropServer</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>PropServer As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>PropServer As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>PropST</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>PropST As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>PropST As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>PropUUID</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>PropUUID As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>PropUUID As String</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>SearchDG</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>SearchDG As Datagram</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>SearchDG As Datagram</ItemDeclaration>
+  <ItemFlags>1</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <Property>
+  <ItemName>DeviceNum</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>DeviceNum As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>DeviceNum As Integer = 0</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>TCPSocket</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <InheritsFrom>TCPSocket</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>TCPSocket</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Port</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>TCPSocket</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>RouterHops</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>32</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <InheritsFrom>UDPSocket</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>SendToSelf</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <InheritsFrom>UDPSocket</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>TCPSocket</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <InheritsFrom>TCPSocket</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+ <Structure>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>itemsStruc</ItemName>
+  <ItemFlags>33</ItemFlags>
+  <ItemName>itemsStruc</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>address As String*15</SourceLine>
+   <SourceLine>serial As String*50</SourceLine>
+   <SourceLine>url As String*50</SourceLine>
+  </ItemSource>
+ </Structure>
+</block>
+</RBProject>
