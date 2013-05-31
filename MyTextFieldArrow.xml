@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<RBProject version="2012r2.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2013r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Window" ID="2051687612">
  <ObjName>MyTextFieldArrow</ObjName>
- <ObjContainerID>1333785165</ObjContainerID>
+ <ObjContainerID>515859547</ObjContainerID>
  <IsClass>1</IsClass>
  <Superclass>ContainerControl</Superclass>
  <ItemFlags>1</ItemFlags>
@@ -21,7 +21,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
@@ -45,7 +45,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>InitialText As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -74,7 +74,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Max As Integer = 10</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>Min</ItemName>
@@ -88,7 +88,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Min As Integer = 0</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>SettingCurPos</ItemName>
@@ -102,7 +102,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingCurPos As Integer = 0</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>SettingDefaultText</ItemName>
@@ -116,7 +116,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingDefaultText As Boolean = False</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>SettingInitialText</ItemName>
@@ -130,7 +130,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingInitialText As String</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>Text</ItemName>
@@ -144,7 +144,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Text As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -177,7 +177,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Enabled As Boolean</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -192,10 +192,11 @@
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
+ <PropertyVal Name="Transparent">True</PropertyVal>
  <PropertyVal Name="EraseBackground">False</PropertyVal>
  <PropertyVal Name="AcceptTabs">True</PropertyVal>
  <PropertyVal Name="AcceptFocus">True</PropertyVal>
- <PropertyVal Name="Backdrop"></PropertyVal>
+ <PropertyVal Name="Backdrop">0</PropertyVal>
  <PropertyVal Name="BackColor"><Hex bytes="8">3136373737323135</Hex></PropertyVal>
  <PropertyVal Name="HasBackColor">False</PropertyVal>
  <PropertyVal Name="UseFocusRing">True</PropertyVal>
@@ -206,10 +207,10 @@
  <PropertyVal Name="TabStop">True</PropertyVal>
  <PropertyVal Name="TabIndex"><Hex bytes="1">30</Hex></PropertyVal>
  <PropertyVal Name="TabPanelIndex"><Hex bytes="1">30</Hex></PropertyVal>
- <PropertyVal Name="LockBottom"></PropertyVal>
- <PropertyVal Name="LockRight"></PropertyVal>
- <PropertyVal Name="LockTop"></PropertyVal>
- <PropertyVal Name="LockLeft"></PropertyVal>
+ <PropertyVal Name="LockBottom">False</PropertyVal>
+ <PropertyVal Name="LockRight">False</PropertyVal>
+ <PropertyVal Name="LockTop">False</PropertyVal>
+ <PropertyVal Name="LockLeft">False</PropertyVal>
  <PropertyVal Name="Height"><Hex bytes="2">3232</Hex></PropertyVal>
  <PropertyVal Name="Width"><Hex bytes="3">313030</Hex></PropertyVal>
  <PropertyVal Name="Top"><Hex bytes="2">3332</Hex></PropertyVal>
@@ -217,15 +218,26 @@
  <PropertyVal Name="InitialParent"></PropertyVal>
  <ViewBehavior>
   <ViewProperty>
+   <ObjName>Transparent</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <EditorType>Boolean</EditorType>
+   <InheritsFrom>ContainerControl</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
    <ObjName>Name</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
    <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Super</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
    <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
@@ -312,6 +324,8 @@
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <EditorType>Boolean</EditorType>
    <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
@@ -320,6 +334,7 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
+   <EditorType>Boolean</EditorType>
    <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
@@ -328,6 +343,7 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
+   <EditorType>Boolean</EditorType>
    <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
@@ -350,6 +366,7 @@
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
    <ItemType>Boolean</ItemType>
+   <EditorType>Boolean</EditorType>
    <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
@@ -381,6 +398,7 @@
    <Visible>1</Visible>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
+   <EditorType>Boolean</EditorType>
    <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
@@ -389,6 +407,7 @@
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
+   <EditorType>Boolean</EditorType>
    <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
@@ -397,6 +416,7 @@
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
+   <EditorType>Boolean</EditorType>
    <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
@@ -505,74 +525,74 @@
  <Control>
   <ControlClass>UpDownArrows</ControlClass>
   <ItemName>UpDownArrows</ItemName>
-  <PropertyVal Name="Name">UpDownArrowsMain</PropertyVal>
-  <PropertyVal Name="Index">-2147483648</PropertyVal>
-  <PropertyVal Name="Scope">0</PropertyVal>
-  <PropertyVal Name="Left">87</PropertyVal>
-  <PropertyVal Name="Top">0</PropertyVal>
-  <PropertyVal Name="Width">13</PropertyVal>
-  <PropertyVal Name="Height">22</PropertyVal>
-  <PropertyVal Name="LockLeft">False</PropertyVal>
-  <PropertyVal Name="LockTop">True</PropertyVal>
-  <PropertyVal Name="LockRight">True</PropertyVal>
-  <PropertyVal Name="LockBottom">True</PropertyVal>
-  <PropertyVal Name="TabPanelIndex">0</PropertyVal>
-  <PropertyVal Name="TabIndex">1</PropertyVal>
-  <PropertyVal Name="TabStop">True</PropertyVal>
-  <PropertyVal Name="InitialParent"></PropertyVal>
-  <PropertyVal Name="Visible">True</PropertyVal>
-  <PropertyVal Name="HelpTag"></PropertyVal>
-  <PropertyVal Name="AutoDeactivate">True</PropertyVal>
-  <PropertyVal Name="Enabled">True</PropertyVal>
   <PropertyVal Name="AcceptFocus">False</PropertyVal>
+  <PropertyVal Name="Enabled">True</PropertyVal>
+  <PropertyVal Name="AutoDeactivate">True</PropertyVal>
+  <PropertyVal Name="HelpTag"></PropertyVal>
+  <PropertyVal Name="Visible">True</PropertyVal>
+  <PropertyVal Name="InitialParent"></PropertyVal>
+  <PropertyVal Name="TabStop">True</PropertyVal>
+  <PropertyVal Name="TabIndex"><Hex bytes="1">31</Hex></PropertyVal>
+  <PropertyVal Name="TabPanelIndex"><Hex bytes="1">30</Hex></PropertyVal>
+  <PropertyVal Name="LockBottom">True</PropertyVal>
+  <PropertyVal Name="LockRight">True</PropertyVal>
+  <PropertyVal Name="LockTop">True</PropertyVal>
+  <PropertyVal Name="LockLeft">False</PropertyVal>
+  <PropertyVal Name="Height"><Hex bytes="2">3232</Hex></PropertyVal>
+  <PropertyVal Name="Width"><Hex bytes="2">3133</Hex></PropertyVal>
+  <PropertyVal Name="Top"><Hex bytes="1">30</Hex></PropertyVal>
+  <PropertyVal Name="Left"><Hex bytes="2">3837</Hex></PropertyVal>
+  <PropertyVal Name="Scope">0</PropertyVal>
   <PropertyVal Name="Super">UpDownArrows</PropertyVal>
+  <PropertyVal Name="Index"><Hex bytes="11">2D32313437343833363438</Hex></PropertyVal>
+  <PropertyVal Name="Name">UpDownArrowsMain</PropertyVal>
   <ControlIndex>0</ControlIndex>
   <Locked>0</Locked>
  </Control>
  <Control>
   <ControlClass>TextField</ControlClass>
   <ItemName>TextField</ItemName>
-  <PropertyVal Name="Name">TextFieldMain</PropertyVal>
-  <PropertyVal Name="Index">-2147483648</PropertyVal>
-  <PropertyVal Name="Scope">0</PropertyVal>
-  <PropertyVal Name="Left">0</PropertyVal>
-  <PropertyVal Name="Top">0</PropertyVal>
-  <PropertyVal Name="Width">84</PropertyVal>
-  <PropertyVal Name="Height">22</PropertyVal>
-  <PropertyVal Name="LockLeft">True</PropertyVal>
-  <PropertyVal Name="LockTop">True</PropertyVal>
-  <PropertyVal Name="LockRight">True</PropertyVal>
-  <PropertyVal Name="LockBottom">True</PropertyVal>
-  <PropertyVal Name="TabPanelIndex">0</PropertyVal>
-  <PropertyVal Name="TabIndex">0</PropertyVal>
-  <PropertyVal Name="TabStop">True</PropertyVal>
-  <PropertyVal Name="Border">True</PropertyVal>
-  <PropertyVal Name="Password"></PropertyVal>
-  <PropertyVal Name="UseFocusRing">False</PropertyVal>
-  <PropertyVal Name="TextColor">0</PropertyVal>
-  <PropertyVal Name="BackColor">16777215</PropertyVal>
-  <PropertyVal Name="Enabled">True</PropertyVal>
-  <PropertyVal Name="Format"></PropertyVal>
-  <PropertyVal Name="Visible">True</PropertyVal>
-  <PropertyVal Name="HelpTag"></PropertyVal>
-  <PropertyVal Name="AutoDeactivate">True</PropertyVal>
-  <PropertyVal Name="TextFont">System</PropertyVal>
-  <PropertyVal Name="TextSize">0</PropertyVal>
-  <PropertyVal Name="TextUnit">0</PropertyVal>
-  <PropertyVal Name="Bold"></PropertyVal>
-  <PropertyVal Name="Italic"></PropertyVal>
-  <PropertyVal Name="Underline"></PropertyVal>
-  <PropertyVal Name="CueText"></PropertyVal>
-  <PropertyVal Name="Text"></PropertyVal>
-  <PropertyVal Name="Mask"></PropertyVal>
-  <PropertyVal Name="ReadOnly"></PropertyVal>
-  <PropertyVal Name="LimitText">0</PropertyVal>
-  <PropertyVal Name="AcceptTabs"></PropertyVal>
-  <PropertyVal Name="Alignment">0</PropertyVal>
-  <PropertyVal Name="AutomaticallyCheckSpelling">False</PropertyVal>
-  <PropertyVal Name="DataSource"></PropertyVal>
   <PropertyVal Name="DataField"></PropertyVal>
+  <PropertyVal Name="DataSource"></PropertyVal>
+  <PropertyVal Name="AutomaticallyCheckSpelling">False</PropertyVal>
+  <PropertyVal Name="Alignment"><Hex bytes="1">30</Hex></PropertyVal>
+  <PropertyVal Name="AcceptTabs">False</PropertyVal>
+  <PropertyVal Name="LimitText"><Hex bytes="1">30</Hex></PropertyVal>
+  <PropertyVal Name="ReadOnly">False</PropertyVal>
+  <PropertyVal Name="Mask"></PropertyVal>
+  <PropertyVal Name="Text"></PropertyVal>
+  <PropertyVal Name="CueText"></PropertyVal>
+  <PropertyVal Name="Underline">False</PropertyVal>
+  <PropertyVal Name="Italic">False</PropertyVal>
+  <PropertyVal Name="Bold">False</PropertyVal>
+  <PropertyVal Name="TextUnit">0</PropertyVal>
+  <PropertyVal Name="TextSize">0.0</PropertyVal>
+  <PropertyVal Name="TextFont">System</PropertyVal>
+  <PropertyVal Name="AutoDeactivate">True</PropertyVal>
+  <PropertyVal Name="HelpTag"></PropertyVal>
+  <PropertyVal Name="Visible">True</PropertyVal>
+  <PropertyVal Name="Format"></PropertyVal>
+  <PropertyVal Name="Enabled">True</PropertyVal>
+  <PropertyVal Name="BackColor"><Hex bytes="8">3136373737323135</Hex></PropertyVal>
+  <PropertyVal Name="TextColor"><Hex bytes="1">30</Hex></PropertyVal>
+  <PropertyVal Name="UseFocusRing">False</PropertyVal>
+  <PropertyVal Name="Password">False</PropertyVal>
+  <PropertyVal Name="Border">True</PropertyVal>
+  <PropertyVal Name="TabStop">True</PropertyVal>
+  <PropertyVal Name="TabIndex"><Hex bytes="1">30</Hex></PropertyVal>
+  <PropertyVal Name="TabPanelIndex"><Hex bytes="1">30</Hex></PropertyVal>
+  <PropertyVal Name="LockBottom">True</PropertyVal>
+  <PropertyVal Name="LockRight">True</PropertyVal>
+  <PropertyVal Name="LockTop">True</PropertyVal>
+  <PropertyVal Name="LockLeft">True</PropertyVal>
+  <PropertyVal Name="Height"><Hex bytes="2">3232</Hex></PropertyVal>
+  <PropertyVal Name="Width"><Hex bytes="2">3834</Hex></PropertyVal>
+  <PropertyVal Name="Top"><Hex bytes="1">30</Hex></PropertyVal>
+  <PropertyVal Name="Left"><Hex bytes="1">30</Hex></PropertyVal>
+  <PropertyVal Name="Scope">0</PropertyVal>
   <PropertyVal Name="Super">TextField</PropertyVal>
+  <PropertyVal Name="Index"><Hex bytes="11">2D32313437343833363438</Hex></PropertyVal>
+  <PropertyVal Name="Name">TextFieldMain</PropertyVal>
   <ControlIndex>1</ControlIndex>
   <Locked>0</Locked>
  </Control>
