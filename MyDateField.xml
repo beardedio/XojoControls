@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<RBProject version="2012r2.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2013r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="451265792">
  <ObjName>MyDateField</ObjName>
  <ObjContainerID>1333785165</ObjContainerID>
@@ -281,7 +281,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <Shared>1</Shared>
+  <IsShared>1</IsShared>
   <ItemParams>d As Date</ItemParams>
   <ItemResult>Integer</ItemResult>
  </Method>
@@ -334,7 +334,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
@@ -351,7 +351,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <ItemParams></ItemParams>
   <ItemResult>Date</ItemResult>
  </Method>
@@ -377,7 +377,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <ItemParams>d As Date</ItemParams>
   <ItemResult></ItemResult>
  </Method>
@@ -430,7 +430,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
@@ -607,7 +607,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <ItemParams>iAutoSelectFrame As Integer</ItemParams>
   <ItemResult></ItemResult>
  </Method>
@@ -685,7 +685,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>assigningSelection As Boolean</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>CurrentDate</ItemName>
@@ -699,7 +699,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>CurrentDate As Date</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>FormatDateOrder(2)</ItemName>
@@ -713,7 +713,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>FormatDateOrder(2) As Integer</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>FormatDateSep</ItemName>
@@ -727,7 +727,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>FormatDateSep As String</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>FormatLeadingZeroDay</ItemName>
@@ -741,7 +741,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>FormatLeadingZeroDay As Boolean</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>FormatLeadingZeroMonth</ItemName>
@@ -755,7 +755,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>FormatLeadingZeroMonth As Boolean</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>FormatShowCentury</ItemName>
@@ -769,7 +769,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>FormatShowCentury As Boolean</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>HasFocus</ItemName>
@@ -783,7 +783,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>HasFocus As Boolean</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>iLastFrameDateOrderIndex</ItemName>
@@ -797,7 +797,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>iLastFrameDateOrderIndex As Integer</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>iLastFrameType</ItemName>
@@ -811,7 +811,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>iLastFrameType As Integer</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>iLastSelStart</ItemName>
@@ -825,7 +825,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>iLastSelStart As Integer</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>iPositionDayLength</ItemName>
@@ -839,7 +839,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>iPositionDayLength As Integer</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>iPositionDayStart</ItemName>
@@ -853,7 +853,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>iPositionDayStart As Integer</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>iPositionMonthLength</ItemName>
@@ -867,7 +867,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>iPositionMonthLength As Integer</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>iPositionMonthStart</ItemName>
@@ -881,7 +881,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>iPositionMonthStart As Integer</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>iPositionYearLength</ItemName>
@@ -895,7 +895,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>iPositionYearLength As Integer</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>iPositionYearStart</ItemName>
@@ -909,114 +909,45 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>iPositionYearStart As Integer</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <ViewBehavior>
   <ViewProperty>
-   <ObjName>AutomaticallyCheckSpelling</ObjName>
+   <ObjName>Name</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>False</PropertyValue>
-   <ItemType>boolean</ItemType>
-   <InheritsFrom>TextField</InheritsFrom>
+   <PropertyGroup>ID</PropertyGroup>
+   <ItemType>String</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>AcceptTabs</ObjName>
+   <ObjName>Index</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Alignment</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
+   <PropertyGroup>ID</PropertyGroup>
    <ItemType>Integer</ItemType>
-   <EditorType>Enum</EditorType>
-   <InheritsFrom>EditField</InheritsFrom>
-   <Enumeration>
-    <ItemDef>0 - Default</ItemDef>
-    <ItemDef>1 - Left</ItemDef>
-    <ItemDef>2 - Center</ItemDef>
-    <ItemDef>3 - Right</ItemDef>
-   </Enumeration>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>AutoDeactivate</ObjName>
+   <ObjName>Super</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>BackColor</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>&amp;hFFFFFF</PropertyValue>
-   <ItemType>Color</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Bold</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Font</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Border</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>CueText</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Initial State</PropertyGroup>
+   <PropertyGroup>ID</PropertyGroup>
    <ItemType>String</ItemType>
-   <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>TextField</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>DataField</ObjName>
+   <ObjName>Left</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Database Binding</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>DataField</EditorType>
-   <InheritsFrom>EditField</InheritsFrom>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Integer</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>DataSource</ObjName>
+   <ObjName>Top</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Database Binding</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>DataSource</EditorType>
-   <InheritsFrom>EditField</InheritsFrom>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Integer</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>Enabled</ObjName>
+   <ObjName>Width</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Format</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <ItemType>String</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>HasFocus</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Boolean</ItemType>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>80</PropertyValue>
+   <ItemType>Integer</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Height</ObjName>
@@ -1024,106 +955,36 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>22</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>HelpTag</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Index</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>ID</PropertyGroup>
-   <ItemType>Integer</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Italic</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Font</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Left</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Position</PropertyGroup>
-   <ItemType>Integer</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>LimitText</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>LockBottom</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Position</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LockLeft</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>LockRight</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Position</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LockTop</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>Mask</ObjName>
+   <ObjName>LockRight</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>String</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Name</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>ID</PropertyGroup>
-   <ItemType>String</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Password</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>ReadOnly</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Super</ObjName>
+   <ObjName>LockBottom</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>ID</PropertyGroup>
-   <InheritsFrom>EditField</InheritsFrom>
+   <PropertyGroup>Position</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TabPanelIndex</ObjName>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TabIndex</ObjName>
@@ -1131,14 +992,6 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>TabPanelIndex</ObjName>
-   <PropertyGroup>Position</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TabStop</ObjName>
@@ -1146,15 +999,26 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>Text</ObjName>
+   <ObjName>Border</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Initial State</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>EditField</InheritsFrom>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Password</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>UseFocusRing</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TextColor</ObjName>
@@ -1162,7 +1026,47 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>&amp;h000000</PropertyValue>
    <ItemType>Color</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>BackColor</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>&amp;hFFFFFF</PropertyValue>
+   <ItemType>Color</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Enabled</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Format</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Visible</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HelpTag</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AutoDeactivate</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TextFont</ObjName>
@@ -1170,15 +1074,13 @@
    <PropertyGroup>Font</PropertyGroup>
    <PropertyValue>System</PropertyValue>
    <ItemType>String</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TextSize</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Font</PropertyGroup>
    <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
+   <ItemType>Single</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TextUnit</ObjName>
@@ -1187,7 +1089,6 @@
    <PropertyValue>0</PropertyValue>
    <ItemType>FontUnits</ItemType>
    <EditorType>Enum</EditorType>
-   <InheritsFrom>TextField</InheritsFrom>
    <Enumeration>
     <ItemDef>0 - Default</ItemDef>
     <ItemDef>1 - Pixel</ItemDef>
@@ -1197,42 +1098,102 @@
    </Enumeration>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>Top</ObjName>
+   <ObjName>Bold</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Position</PropertyGroup>
-   <ItemType>Integer</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
+   <PropertyGroup>Font</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Italic</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Underline</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Font</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>UseFocusRing</ObjName>
+   <ObjName>CueText</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
+   <PropertyGroup>Initial State</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Text</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Initial State</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Mask</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>ReadOnly</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>Visible</ObjName>
+   <ObjName>LimitText</ObjName>
    <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Width</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Position</PropertyGroup>
-   <PropertyValue>90</PropertyValue>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>EditField</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AcceptTabs</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Alignment</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+   <EditorType>Enum</EditorType>
+   <Enumeration>
+    <ItemDef>0 - Default</ItemDef>
+    <ItemDef>1 - Left</ItemDef>
+    <ItemDef>2 - Center</ItemDef>
+    <ItemDef>3 - Right</ItemDef>
+   </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AutomaticallyCheckSpelling</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>DataSource</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Database Binding</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>DataSource</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>DataField</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Database Binding</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>DataField</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HasFocus</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Boolean</ItemType>
   </ViewProperty>
  </ViewBehavior>
  <Constant>

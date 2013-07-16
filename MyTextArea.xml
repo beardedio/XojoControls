@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<RBProject version="2012r2.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2013r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="719660241">
  <ObjName>MyTextArea</ObjName>
  <ObjContainerID>1333785165</ObjContainerID>
@@ -73,7 +73,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>InitialText As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -102,7 +102,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingCurPos As Integer = 0</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>SettingDefaultValue</ItemName>
@@ -116,7 +116,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingDefaultValue As Boolean = False</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>SettingInitialText</ItemName>
@@ -130,58 +130,38 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingInitialText As String</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <ViewBehavior>
-  <ViewProperty>
-   <ObjName>LineHeight</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Double</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>LineSpacing</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>1</PropertyValue>
-   <ItemType>Double</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
-  </ViewProperty>
   <ViewProperty>
    <ObjName>Name</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
    <ItemType>String</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Index</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Super</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
-   <InheritsFrom>TextArea</InheritsFrom>
+   <ItemType>String</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Left</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Top</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Width</ObjName>
@@ -189,7 +169,6 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>100</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Height</ObjName>
@@ -197,42 +176,36 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>100</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LockLeft</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LockTop</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LockRight</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LockBottom</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TabPanelIndex</ObjName>
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TabIndex</ObjName>
@@ -240,7 +213,6 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TabStop</ObjName>
@@ -248,7 +220,6 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Border</ObjName>
@@ -256,7 +227,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Multiline</ObjName>
@@ -264,14 +234,12 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>ScrollbarHorizontal</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>ScrollbarVertical</ObjName>
@@ -279,7 +247,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Styled</ObjName>
@@ -287,7 +254,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>UseFocusRing</ObjName>
@@ -295,7 +261,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TextColor</ObjName>
@@ -303,7 +268,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>&amp;h000000</PropertyValue>
    <ItemType>Color</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>BackColor</ObjName>
@@ -311,7 +275,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>&amp;hFFFFFF</PropertyValue>
    <ItemType>Color</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Enabled</ObjName>
@@ -319,14 +282,12 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Format</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
    <ItemType>String</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Visible</ObjName>
@@ -334,7 +295,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>HelpTag</ObjName>
@@ -342,7 +302,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>AutoDeactivate</ObjName>
@@ -350,7 +309,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>HideSelection</ObjName>
@@ -358,7 +316,20 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LineHeight</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>LineSpacing</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>1</PropertyValue>
+   <ItemType>Double</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TextFont</ObjName>
@@ -366,7 +337,6 @@
    <PropertyGroup>Font</PropertyGroup>
    <PropertyValue>System</PropertyValue>
    <ItemType>String</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TextSize</ObjName>
@@ -374,7 +344,6 @@
    <PropertyGroup>Font</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Single</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TextUnit</ObjName>
@@ -383,7 +352,6 @@
    <PropertyValue>0</PropertyValue>
    <ItemType>FontUnits</ItemType>
    <EditorType>Enum</EditorType>
-   <InheritsFrom>TextArea</InheritsFrom>
    <Enumeration>
     <ItemDef>0 - Default</ItemDef>
     <ItemDef>1 - Pixel</ItemDef>
@@ -397,21 +365,18 @@
    <Visible>1</Visible>
    <PropertyGroup>Font</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Italic</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Font</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Underline</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Font</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Text</ObjName>
@@ -419,21 +384,18 @@
    <PropertyGroup>Initial State</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Mask</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>ReadOnly</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LimitText</ObjName>
@@ -441,14 +403,12 @@
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>AcceptTabs</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Alignment</ObjName>
@@ -457,7 +417,6 @@
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
    <EditorType>Enum</EditorType>
-   <InheritsFrom>TextArea</InheritsFrom>
    <Enumeration>
     <ItemDef>0 - Default</ItemDef>
     <ItemDef>1 - Left</ItemDef>
@@ -471,7 +430,6 @@
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>boolean</ItemType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>DataSource</ObjName>
@@ -479,7 +437,6 @@
    <PropertyGroup>Database Binding</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>DataSource</EditorType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>DataField</ObjName>
@@ -487,7 +444,6 @@
    <PropertyGroup>Database Binding</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>DataField</EditorType>
-   <InheritsFrom>TextArea</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>InitialText</ObjName>
