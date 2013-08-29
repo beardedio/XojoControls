@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<RBProject version="2013r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2012r2.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Window" ID="2051687612">
  <ObjName>MyTextFieldArrow</ObjName>
- <ObjContainerID>515859547</ObjContainerID>
+ <ObjContainerID>1333785165</ObjContainerID>
  <IsClass>1</IsClass>
  <Superclass>ContainerControl</Superclass>
  <ItemFlags>1</ItemFlags>
@@ -21,7 +21,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <Shared>0</Shared>
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
@@ -45,7 +45,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>InitialText As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <Shared>0</Shared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -74,7 +74,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Max As Integer = 10</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <Shared>0</Shared>
  </Property>
  <Property>
   <ItemName>Min</ItemName>
@@ -88,7 +88,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Min As Integer = 0</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <Shared>0</Shared>
  </Property>
  <Property>
   <ItemName>SettingCurPos</ItemName>
@@ -102,7 +102,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingCurPos As Integer = 0</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <IsShared>0</IsShared>
+  <Shared>0</Shared>
  </Property>
  <Property>
   <ItemName>SettingDefaultText</ItemName>
@@ -116,7 +116,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingDefaultText As Boolean = False</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <IsShared>0</IsShared>
+  <Shared>0</Shared>
  </Property>
  <Property>
   <ItemName>SettingInitialText</ItemName>
@@ -130,7 +130,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingInitialText As String</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <IsShared>0</IsShared>
+  <Shared>0</Shared>
  </Property>
  <Property>
   <ItemName>Text</ItemName>
@@ -144,7 +144,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Text As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <Shared>0</Shared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -177,7 +177,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Enabled As Boolean</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
+  <Shared>0</Shared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -192,7 +192,6 @@
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
- <PropertyVal Name="Transparent">True</PropertyVal>
  <PropertyVal Name="EraseBackground">False</PropertyVal>
  <PropertyVal Name="AcceptTabs">True</PropertyVal>
  <PropertyVal Name="AcceptFocus">True</PropertyVal>
@@ -217,15 +216,6 @@
  <PropertyVal Name="Left"><Hex bytes="2">3332</Hex></PropertyVal>
  <PropertyVal Name="InitialParent"></PropertyVal>
  <ViewBehavior>
-  <ViewProperty>
-   <ObjName>Transparent</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-   <EditorType>Boolean</EditorType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
-  </ViewProperty>
   <ViewProperty>
    <ObjName>Name</ObjName>
    <Visible>1</Visible>
