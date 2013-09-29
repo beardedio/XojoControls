@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<RBProject version="2012r2.1" FormatVersion="2" MinIDEVersion="20070100">
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2013r3" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Window" ID="2051687612">
  <ObjName>MyTextFieldArrow</ObjName>
  <ObjContainerID>1333785165</ObjContainerID>
@@ -21,7 +21,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
@@ -45,7 +45,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>InitialText As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -74,7 +74,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Max As Integer = 10</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>Min</ItemName>
@@ -88,7 +88,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Min As Integer = 0</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>SettingCurPos</ItemName>
@@ -102,7 +102,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingCurPos As Integer = 0</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>SettingDefaultText</ItemName>
@@ -116,7 +116,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingDefaultText As Boolean = False</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>SettingInitialText</ItemName>
@@ -130,7 +130,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SettingInitialText As String</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
  </Property>
  <Property>
   <ItemName>Text</ItemName>
@@ -144,7 +144,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Text As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -177,7 +177,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>Enabled As Boolean</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -192,6 +192,7 @@
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
+ <PropertyVal Name="Transparent">True</PropertyVal>
  <PropertyVal Name="EraseBackground">False</PropertyVal>
  <PropertyVal Name="AcceptTabs">True</PropertyVal>
  <PropertyVal Name="AcceptFocus">True</PropertyVal>
@@ -217,38 +218,41 @@
  <PropertyVal Name="InitialParent"></PropertyVal>
  <ViewBehavior>
   <ViewProperty>
+   <ObjName>Transparent</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+   <EditorType>Boolean</EditorType>
+  </ViewProperty>
+  <ViewProperty>
    <ObjName>Name</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
    <ItemType>String</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Super</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
    <ItemType>String</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>InitialParent</ObjName>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>String</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Left</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Top</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Width</ObjName>
@@ -256,7 +260,6 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>300</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Height</ObjName>
@@ -264,42 +267,36 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>300</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LockLeft</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LockTop</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LockRight</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LockBottom</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TabPanelIndex</ObjName>
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TabIndex</ObjName>
@@ -307,7 +304,6 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TabStop</ObjName>
@@ -316,7 +312,6 @@
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
    <EditorType>Boolean</EditorType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Visible</ObjName>
@@ -325,7 +320,6 @@
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
    <EditorType>Boolean</EditorType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Enabled</ObjName>
@@ -334,7 +328,6 @@
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
    <EditorType>Boolean</EditorType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>AutoDeactivate</ObjName>
@@ -342,14 +335,12 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>HelpTag</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
    <ItemType>String</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>UseFocusRing</ObjName>
@@ -357,7 +348,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <ItemType>Boolean</ItemType>
    <EditorType>Boolean</EditorType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>HasBackColor</ObjName>
@@ -365,7 +355,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>False</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>BackColor</ObjName>
@@ -373,7 +362,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>&amp;hFFFFFF</PropertyValue>
    <ItemType>Color</ItemType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Backdrop</ObjName>
@@ -381,7 +369,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <ItemType>Picture</ItemType>
    <EditorType>Picture</EditorType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>AcceptFocus</ObjName>
@@ -389,7 +376,6 @@
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
    <EditorType>Boolean</EditorType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>AcceptTabs</ObjName>
@@ -398,7 +384,6 @@
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
    <EditorType>Boolean</EditorType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>EraseBackground</ObjName>
@@ -407,7 +392,6 @@
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
    <EditorType>Boolean</EditorType>
-   <InheritsFrom>ContainerControl</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>InitialText</ObjName>
