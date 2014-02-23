@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<RBProject version="2012r2.1" FormatVersion="2" MinIDEVersion="20070100">
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2013r4.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="106401791">
  <ObjName>MyDate</ObjName>
  <ObjContainerID>1333785165</ObjContainerID>
@@ -26,7 +26,7 @@
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>33</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <ItemParams>s As String, charsToCut As Integer</ItemParams>
   <ItemResult>String</ItemResult>
  </Method>
@@ -45,14 +45,19 @@
    <SourceLine></SourceLine>
    <SourceLine>Year:</SourceLine>
    <SourceLine>YYYY (eg 1997)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Year and month:</SourceLine>
    <SourceLine>YYYY-MM (eg 1997-07)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Complete date:</SourceLine>
    <SourceLine>YYYY-MM-DD (eg 1997-07-16)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Complete date plus hours and minutes:</SourceLine>
    <SourceLine>YYYY-MM-DDThh:mmTZD (eg 1997-07-16T19:20+01:00)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Complete date plus hours, minutes and seconds:</SourceLine>
    <SourceLine>YYYY-MM-DDThh:mm:ssTZD (eg 1997-07-16T19:20:30+01:00)</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>Complete date plus hours, minutes, seconds and a decimal fraction of a</SourceLine>
    <SourceLine>second</SourceLine>
    <SourceLine>YYYY-MM-DDThh:mm:ss.sTZD (eg 1997-07-16T19:20:30.45+01:00)</SourceLine>
@@ -70,7 +75,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>ISO8601 As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -79,11 +84,10 @@
    <SourceLine>'2004-02-12T15:59:21Z</SourceLine>
    <SourceLine>'2010-02-12T23:19:00-03:30</SourceLine>
    <SourceLine>value = Uppercase(value)</SourceLine>
-   <SourceLine>value = ReplaceAll(value, "Z", "+00:00")</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>valuelen = Len(value)</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>if valuelen &lt; 22 Then</SourceLine>
+   <SourceLine>If valuelen &lt; 16 Then</SourceLine>
    <SourceLine>Select Case valuelen</SourceLine>
    <SourceLine>Case 4 'YYYY</SourceLine>
    <SourceLine>Self.Year = Val(value)</SourceLine>
@@ -100,12 +104,22 @@
    <SourceLine></SourceLine>
    <SourceLine>End Select</SourceLine>
    <SourceLine>Else</SourceLine>
+   <SourceLine>' If no timezone add one</SourceLine>
+   <SourceLine>If value.Right(1) &lt;&gt; "Z" And _</SourceLine>
+   <SourceLine>value.Mid(value.Len-6, 1) &lt;&gt; "+" And _</SourceLine>
+   <SourceLine>value.Mid(value.Len-6, 1) &lt;&gt; "-" Then</SourceLine>
+   <SourceLine>value = value + "Z"</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>' Replace Z with 0 offset</SourceLine>
+   <SourceLine>value = ReplaceAll(value, "Z", "+00:00")</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>' YYYY-MM-DDThh:mm+00:00</SourceLine>
    <SourceLine>value = ReplaceAll(value, "T", " ")</SourceLine>
    <SourceLine>value = Chop(value, 3)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>' Set Time Zone</SourceLine>
-   <SourceLine>Self.GMTOffset = val(Right(value, 3))</SourceLine>
+   <SourceLine>Self.GMTOffset = Val(Right(value, 3))</SourceLine>
    <SourceLine>'val(Left(Right(value, 6), 3))</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>' Remove Time Zone</SourceLine>
@@ -115,7 +129,7 @@
    <SourceLine></SourceLine>
    <SourceLine>Self.SQLDateTime = value</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>End if</SourceLine>
+   <SourceLine>End If</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
@@ -165,7 +179,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>RFC2822 As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -199,7 +213,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>SQLTime As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -231,7 +245,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>UnixEpoch As Double</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -260,7 +274,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>YMDHMS As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -291,7 +305,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>YMD As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -319,7 +333,7 @@
   <TextEncoding>134217984</TextEncoding>
   <ItemDeclaration>FileTimeStamp As String</ItemDeclaration>
   <ItemFlags>0</ItemFlags>
-  <Shared>0</Shared>
+  <IsShared>0</IsShared>
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
@@ -338,160 +352,142 @@
    <ObjName>Name</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
-   <InheritsFrom>Object</InheritsFrom>
+   <ItemType>String</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Index</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
    <PropertyValue>-2147483648</PropertyValue>
-   <InheritsFrom>Object</InheritsFrom>
+   <ItemType>Integer</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Super</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
-   <InheritsFrom>Object</InheritsFrom>
+   <ItemType>String</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Left</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
-   <InheritsFrom>Object</InheritsFrom>
+   <ItemType>Integer</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Top</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>0</PropertyValue>
-   <InheritsFrom>Object</InheritsFrom>
+   <ItemType>Integer</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Year</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Month</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Day</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Hour</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Minute</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Second</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>DayOfWeek</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>DayOfYear</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>WeekOfYear</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Integer</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>ShortDate</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LongDate</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>AbbreviatedDate</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>ShortTime</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>LongTime</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>TotalSeconds</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Double</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>SQLDate</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>SQLDateTime</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>GMTOffset</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>0</PropertyValue>
    <ItemType>Double</ItemType>
-   <InheritsFrom>Date</InheritsFrom>
   </ViewProperty>
   <ViewProperty>
    <ObjName>ISO8601</ObjName>
