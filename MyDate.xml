@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2013r4.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2021r2" FormatVersion="2" MinIDEVersion="20150400">
 <block type="Module" ID="106401791">
  <ObjName>MyDate</ObjName>
- <ObjContainerID>1333785165</ObjContainerID>
+ <ObjContainerID>515859547</ObjContainerID>
  <IsClass>1</IsClass>
  <Superclass>Date</Superclass>
  <ItemFlags>1</ItemFlags>
@@ -12,6 +12,7 @@
   <ItemName>Chop</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>610613247</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Chop(s As String, charsToCut As Integer) As String</SourceLine>
@@ -34,6 +35,7 @@
   <ItemName>ISO8601</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>139350015</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>ISO8601 As String</SourceLine>
@@ -146,6 +148,7 @@
   <ItemName>RFC2822</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1070469119</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>RFC2822 As String</SourceLine>
@@ -205,6 +208,7 @@
   <ItemName>SQLTime</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>645308415</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>SQLTime As String</SourceLine>
@@ -237,6 +241,7 @@
   <ItemName>UnixEpoch</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1629100031</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>UnixEpoch As Double</SourceLine>
@@ -266,6 +271,7 @@
   <ItemName>YMDHMS</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1767180287</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>YMDHMS As String</SourceLine>
@@ -297,6 +303,7 @@
   <ItemName>YMD</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1610268671</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>YMD As String</SourceLine>
@@ -325,6 +332,7 @@
   <ItemName>FileTimeStamp</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>367327231</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>FileTimeStamp As String</SourceLine>

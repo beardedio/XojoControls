@@ -1,8 +1,8 @@
-<?xml version="1.0"?>
-<RBProject version="2013r2" FormatVersion="2" MinIDEVersion="20070100">
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2021r2" FormatVersion="2" MinIDEVersion="20150400">
 <block type="Module" ID="719660241">
  <ObjName>MyTextArea</ObjName>
- <ObjContainerID>1333785165</ObjContainerID>
+ <ObjContainerID>515859547</ObjContainerID>
  <IsClass>1</IsClass>
  <Superclass>TextArea</Superclass>
  <ItemFlags>1</ItemFlags>
@@ -12,6 +12,7 @@
   <ItemName>TextChange</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1235888127</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub TextChange()</SourceLine>
@@ -25,6 +26,7 @@
   <ItemName>ConstructContextualMenu</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>932734975</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean</SourceLine>
@@ -65,6 +67,7 @@
   <ItemName>InitialText</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1489752063</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>InitialText As String</SourceLine>
@@ -94,9 +97,10 @@
   <ItemName>SettingCurPos</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1412276223</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>SettingCurPos As Integer</SourceLine>
+   <SourceLine>SettingCurPos As Integer = 0</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -108,9 +112,10 @@
   <ItemName>SettingDefaultValue</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1713170431</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>SettingDefaultValue As Boolean</SourceLine>
+   <SourceLine>SettingDefaultValue As Boolean = False</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -122,6 +127,7 @@
   <ItemName>SettingInitialText</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>2008754175</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>SettingInitialText As String</SourceLine>
@@ -133,6 +139,153 @@
   <IsShared>0</IsShared>
  </Property>
  <ViewBehavior>
+  <ViewProperty>
+   <ObjName>AllowAutoDeactivate</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>BackgroundColor</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>&amp;hFFFFFF</PropertyValue>
+   <ItemType>Color</ItemType>
+   <EditorType>Color</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HasBorder</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Tooltip</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HasHorizontalScrollbar</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HasVerticalScrollbar</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowStyledText</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Transparent</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowFocusRing</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>FontName</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>System</PropertyValue>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>FontSize</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Single</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>FontUnit</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>FontUnits</ItemType>
+   <EditorType>Enum</EditorType>
+   <Enumeration>
+    <ItemDef>0 - Default</ItemDef>
+    <ItemDef>1 - Pixel</ItemDef>
+    <ItemDef>2 - Point</ItemDef>
+    <ItemDef>3 - Inch</ItemDef>
+    <ItemDef>4 - Millimeter</ItemDef>
+   </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowTabs</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TextAlignment</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>TextAlignments</ItemType>
+   <EditorType>Enum</EditorType>
+   <Enumeration>
+    <ItemDef>0 - Default</ItemDef>
+    <ItemDef>1 - Left</ItemDef>
+    <ItemDef>2 - Center</ItemDef>
+    <ItemDef>3 - Right</ItemDef>
+   </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowSpellChecking</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>MaximumCharactersAllowed</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>ValidationMask</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>UnicodeMode</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Selection Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>TextArea.UnicodeModes</ItemType>
+   <EditorType>Enum</EditorType>
+   <Enumeration>
+    <ItemDef>0 - Native</ItemDef>
+    <ItemDef>1 - Characters</ItemDef>
+    <ItemDef>2 - Codepoints</ItemDef>
+   </Enumeration>
+  </ViewProperty>
   <ViewProperty>
    <ObjName>Name</ObjName>
    <Visible>1</Visible>
@@ -222,41 +375,7 @@
    <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>Border</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>Multiline</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>ScrollbarHorizontal</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>ScrollbarVertical</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Styled</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>UseFocusRing</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
@@ -268,13 +387,7 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>&amp;h000000</PropertyValue>
    <ItemType>Color</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>BackColor</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>&amp;hFFFFFF</PropertyValue>
-   <ItemType>Color</ItemType>
+   <EditorType>Color</EditorType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Enabled</ObjName>
@@ -291,20 +404,6 @@
   </ViewProperty>
   <ViewProperty>
    <ObjName>Visible</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>HelpTag</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>MultiLineEditor</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AutoDeactivate</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
@@ -332,35 +431,6 @@
    <ItemType>Double</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>TextFont</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Font</PropertyGroup>
-   <PropertyValue>System</PropertyValue>
-   <ItemType>String</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>TextSize</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Font</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Single</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>TextUnit</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Font</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>FontUnits</ItemType>
-   <EditorType>Enum</EditorType>
-   <Enumeration>
-    <ItemDef>0 - Default</ItemDef>
-    <ItemDef>1 - Pixel</ItemDef>
-    <ItemDef>2 - Point</ItemDef>
-    <ItemDef>3 - Inch</ItemDef>
-    <ItemDef>4 - Millimeter</ItemDef>
-   </Enumeration>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>Bold</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Font</PropertyGroup>
@@ -386,50 +456,10 @@
    <EditorType>MultiLineEditor</EditorType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>Mask</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>String</ItemType>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>ReadOnly</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>LimitText</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AcceptTabs</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Alignment</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-   <EditorType>Enum</EditorType>
-   <Enumeration>
-    <ItemDef>0 - Default</ItemDef>
-    <ItemDef>1 - Left</ItemDef>
-    <ItemDef>2 - Center</ItemDef>
-    <ItemDef>3 - Right</ItemDef>
-   </Enumeration>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AutomaticallyCheckSpelling</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>DataSource</ObjName>
