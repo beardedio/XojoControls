@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2021r2" FormatVersion="2" MinIDEVersion="20150400">
+<RBProject version="2023r4" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="719660241">
  <ObjName>MyTextArea</ObjName>
  <ObjContainerID>515859547</ObjContainerID>
  <IsClass>1</IsClass>
- <Superclass>TextArea</Superclass>
+ <Superclass>DesktopTextArea</Superclass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
  <HookInstance>
-  <ItemName>TextChange</ItemName>
+  <ItemName>TextChanged</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <PartID>1235888127</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub TextChange()</SourceLine>
+   <SourceLine>Sub TextChanged()</SourceLine>
    <SourceLine>If Not SettingDefaultValue Then</SourceLine>
    <SourceLine>RaiseEvent TextChange</SourceLine>
    <SourceLine>End If</SourceLine>
@@ -29,7 +29,7 @@
   <PartID>932734975</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean</SourceLine>
+   <SourceLine>Function ConstructContextualMenu(base As DesktopMenuItem, x As Integer, y As Integer) As Boolean</SourceLine>
    <SourceLine>#if TargetCarbon Then</SourceLine>
    <SourceLine>Dim MyMenuItem As MenuItem</SourceLine>
    <SourceLine>Dim ModKey As String</SourceLine>

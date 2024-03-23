@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2021r2" FormatVersion="2" MinIDEVersion="20150400">
-<block type="Window" ID="2051687612">
+<RBProject version="2023r4" FormatVersion="2" MinIDEVersion="20210300">
+<block type="DesktopWindow" ID="2051687612">
  <ObjName>MyTextFieldArrow</ObjName>
  <ObjContainerID>515859547</ObjContainerID>
  <IsClass>1</IsClass>
- <Superclass>ContainerControl</Superclass>
+ <Superclass>DesktopContainer</Superclass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -156,14 +156,9 @@
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
-   <SourceLine>'SettingCurPos = TextFieldMain.SelStart</SourceLine>
-   <SourceLine>''Self.SetText(value)</SourceLine>
-   <SourceLine>'TextFieldMain.Text = value</SourceLine>
-   <SourceLine>'TextFieldMain.SelStart = SettingCurPos</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>SettingCurPos = TextFieldMain.SelStart</SourceLine>
+   <SourceLine>SettingCurPos = TextFieldMain.SelectionStart</SourceLine>
    <SourceLine>TextFieldMain.Text = value</SourceLine>
-   <SourceLine>TextFieldMain.SelStart = SettingCurPos</SourceLine>
+   <SourceLine>TextFieldMain.SelectionStart = SettingCurPos</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
@@ -201,14 +196,13 @@
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
- <PropertyVal Name="DoubleBuffer">False</PropertyVal>
+ <PropertyVal Name="Composited">False</PropertyVal>
  <PropertyVal Name="Transparent">True</PropertyVal>
- <PropertyVal Name="EraseBackground">False</PropertyVal>
  <PropertyVal Name="AllowTabs">True</PropertyVal>
  <PropertyVal Name="AllowFocus">False</PropertyVal>
  <PropertyVal Name="HasBackgroundColor">False</PropertyVal>
  <PropertyVal Name="Backdrop">0</PropertyVal>
- <PropertyVal Name="BackgroundColor">16777215</PropertyVal>
+ <PropertyVal Name="BackgroundColor">&amp;h00FFFFFF</PropertyVal>
  <PropertyVal Name="Visible">True</PropertyVal>
  <PropertyVal Name="AllowFocusRing">False</PropertyVal>
  <PropertyVal Name="Tooltip"></PropertyVal>
@@ -228,6 +222,13 @@
  <PropertyVal Name="Width">100</PropertyVal>
  <PropertyVal Name="Index">-2147483648</PropertyVal>
  <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Composited</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Window Behavior</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
   <ViewProperty>
    <ObjName>Index</ObjName>
    <Visible>1</Visible>
@@ -261,8 +262,8 @@
    <Visible>1</Visible>
    <PropertyGroup>Background</PropertyGroup>
    <PropertyValue>&amp;hFFFFFF</PropertyValue>
-   <ItemType>Color</ItemType>
-   <EditorType>Color</EditorType>
+   <ItemType>ColorGroup</ItemType>
+   <EditorType>ColorGroup</EditorType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>HasBackgroundColor</ObjName>
@@ -283,13 +284,6 @@
    <Visible>1</Visible>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>DoubleBuffer</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Windows Behavior</PropertyGroup>
-   <PropertyValue>False</PropertyValue>
    <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
@@ -407,13 +401,6 @@
    <ItemType>Picture</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>EraseBackground</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>InitialText</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
@@ -439,15 +426,15 @@
   </ViewProperty>
  </ViewBehavior>
  <ControlBehavior>
-  <Superclass>UpDownArrows</Superclass>
+  <Superclass>DesktopUpDownArrows</Superclass>
   <HookInstance>
-   <ItemName>Down</ItemName>
+   <ItemName>DownPressed</ItemName>
    <Compatibility></Compatibility>
    <Visible>1</Visible>
    <PartID>1310275583</PartID>
    <ItemSource>
     <TextEncoding>134217984</TextEncoding>
-    <SourceLine>Sub Down()</SourceLine>
+    <SourceLine>Sub DownPressed()</SourceLine>
     <SourceLine>Dim i As Integer</SourceLine>
     <SourceLine></SourceLine>
     <SourceLine>TextFieldMain.SetFocus</SourceLine>
@@ -466,13 +453,13 @@
    </ItemSource>
   </HookInstance>
   <HookInstance>
-   <ItemName>Up</ItemName>
+   <ItemName>UpPressed</ItemName>
    <Compatibility></Compatibility>
    <Visible>1</Visible>
    <PartID>183414783</PartID>
    <ItemSource>
     <TextEncoding>134217984</TextEncoding>
-    <SourceLine>Sub Up()</SourceLine>
+    <SourceLine>Sub UpPressed()</SourceLine>
     <SourceLine>Dim i As Integer</SourceLine>
     <SourceLine></SourceLine>
     <SourceLine>TextFieldMain.SetFocus</SourceLine>
@@ -492,15 +479,15 @@
   </HookInstance>
  </ControlBehavior>
  <ControlBehavior>
-  <Superclass>TextField</Superclass>
+  <Superclass>DesktopTextField</Superclass>
   <HookInstance>
-   <ItemName>TextChange</ItemName>
+   <ItemName>TextChanged</ItemName>
    <Compatibility></Compatibility>
    <Visible>1</Visible>
    <PartID>1255231487</PartID>
    <ItemSource>
     <TextEncoding>134217984</TextEncoding>
-    <SourceLine>Sub TextChange()</SourceLine>
+    <SourceLine>Sub TextChanged()</SourceLine>
     <SourceLine>If IsNumeric(Self.Text) Then</SourceLine>
     <SourceLine>If Val(Self.Text) &lt; Min Then</SourceLine>
     <SourceLine>Self.Text = str(Min)</SourceLine>
@@ -520,13 +507,14 @@
   </HookInstance>
  </ControlBehavior>
  <Control>
-  <ControlClass>UpDownArrows</ControlClass>
-  <ItemName>UpDownArrows</ItemName>
-  <PropertyVal Name="AcceptFocus">False</PropertyVal>
-  <PropertyVal Name="AutoDeactivate">True</PropertyVal>
+  <ControlClass>DesktopUpDownArrows</ControlClass>
+  <ItemName>DesktopUpDownArrows</ItemName>
+  <PropertyVal Name="Active">False</PropertyVal>
+  <PropertyVal Name="AllowAutoDeactivate">True</PropertyVal>
+  <PropertyVal Name="AllowFocus">False</PropertyVal>
+  <PropertyVal Name="AllowTabStop">True</PropertyVal>
   <PropertyVal Name="Enabled">True</PropertyVal>
   <PropertyVal Name="Height">22</PropertyVal>
-  <PropertyVal Name="HelpTag"></PropertyVal>
   <PropertyVal Name="Index">-2147483648</PropertyVal>
   <PropertyVal Name="InitialParent"></PropertyVal>
   <PropertyVal Name="Left">87</PropertyVal>
@@ -535,62 +523,65 @@
   <PropertyVal Name="LockRight">True</PropertyVal>
   <PropertyVal Name="LockTop">True</PropertyVal>
   <PropertyVal Name="Name">UpDownArrowsMain</PropertyVal>
+  <PropertyVal Name="PanelIndex">0</PropertyVal>
   <PropertyVal Name="Scope">0</PropertyVal>
-  <PropertyVal Name="Super">UpDownArrows</PropertyVal>
+  <PropertyVal Name="Super">DesktopUpDownArrows</PropertyVal>
   <PropertyVal Name="TabIndex">1</PropertyVal>
   <PropertyVal Name="TabPanelIndex">0</PropertyVal>
-  <PropertyVal Name="TabStop">True</PropertyVal>
+  <PropertyVal Name="Tooltip"></PropertyVal>
   <PropertyVal Name="Top">0</PropertyVal>
   <PropertyVal Name="Transparent">True</PropertyVal>
   <PropertyVal Name="Visible">True</PropertyVal>
   <PropertyVal Name="Width">13</PropertyVal>
+  <PropertyVal Name="_mIndex">0</PropertyVal>
+  <PropertyVal Name="_mInitialParent"></PropertyVal>
+  <PropertyVal Name="_mName"></PropertyVal>
+  <PropertyVal Name="_mPanelIndex">0</PropertyVal>
   <ControlIndex>0</ControlIndex>
   <Locked>0</Locked>
   <PartID>1095266303</PartID>
  </Control>
  <Control>
-  <ControlClass>TextField</ControlClass>
-  <ItemName>TextField</ItemName>
-  <PropertyVal Name="AcceptTabs">False</PropertyVal>
-  <PropertyVal Name="Alignment">0</PropertyVal>
-  <PropertyVal Name="AutoDeactivate">True</PropertyVal>
-  <PropertyVal Name="AutomaticallyCheckSpelling">False</PropertyVal>
-  <PropertyVal Name="BackColor">16777215</PropertyVal>
+  <ControlClass>DesktopTextField</ControlClass>
+  <ItemName>DesktopTextField</ItemName>
+  <PropertyVal Name="AllowAutoDeactivate">True</PropertyVal>
+  <PropertyVal Name="AllowFocusRing">True</PropertyVal>
+  <PropertyVal Name="AllowSpellChecking">False</PropertyVal>
+  <PropertyVal Name="AllowTabs">False</PropertyVal>
+  <PropertyVal Name="BackgroundColor">&amp;hFFFFFF</PropertyVal>
   <PropertyVal Name="Bold">False</PropertyVal>
-  <PropertyVal Name="Border">True</PropertyVal>
-  <PropertyVal Name="CueText"></PropertyVal>
-  <PropertyVal Name="DataField"></PropertyVal>
-  <PropertyVal Name="DataSource"></PropertyVal>
   <PropertyVal Name="Enabled">True</PropertyVal>
+  <PropertyVal Name="FontName">System</PropertyVal>
+  <PropertyVal Name="FontSize">0.0</PropertyVal>
+  <PropertyVal Name="FontUnit">0</PropertyVal>
   <PropertyVal Name="Format"></PropertyVal>
+  <PropertyVal Name="HasBorder">True</PropertyVal>
   <PropertyVal Name="Height">22</PropertyVal>
-  <PropertyVal Name="HelpTag"></PropertyVal>
+  <PropertyVal Name="Hint"></PropertyVal>
   <PropertyVal Name="Index">-2147483648</PropertyVal>
   <PropertyVal Name="Italic">False</PropertyVal>
   <PropertyVal Name="Left">0</PropertyVal>
-  <PropertyVal Name="LimitText">0</PropertyVal>
   <PropertyVal Name="LockBottom">True</PropertyVal>
   <PropertyVal Name="LockLeft">True</PropertyVal>
   <PropertyVal Name="LockRight">True</PropertyVal>
   <PropertyVal Name="LockTop">True</PropertyVal>
-  <PropertyVal Name="Mask"></PropertyVal>
+  <PropertyVal Name="MaximumCharactersAllowed">0</PropertyVal>
   <PropertyVal Name="Name">TextFieldMain</PropertyVal>
   <PropertyVal Name="Password">False</PropertyVal>
   <PropertyVal Name="ReadOnly">False</PropertyVal>
   <PropertyVal Name="Scope">0</PropertyVal>
-  <PropertyVal Name="Super">TextField</PropertyVal>
+  <PropertyVal Name="Super">DesktopTextField</PropertyVal>
   <PropertyVal Name="TabIndex">0</PropertyVal>
   <PropertyVal Name="TabPanelIndex">0</PropertyVal>
   <PropertyVal Name="TabStop">True</PropertyVal>
   <PropertyVal Name="Text"></PropertyVal>
-  <PropertyVal Name="TextColor">0</PropertyVal>
-  <PropertyVal Name="TextFont">System</PropertyVal>
-  <PropertyVal Name="TextSize">0.0e+</PropertyVal>
-  <PropertyVal Name="TextUnit">0</PropertyVal>
+  <PropertyVal Name="TextAlignment">0</PropertyVal>
+  <PropertyVal Name="TextColor">&amp;h00000000</PropertyVal>
+  <PropertyVal Name="Tooltip"></PropertyVal>
   <PropertyVal Name="Top">0</PropertyVal>
   <PropertyVal Name="Transparent">True</PropertyVal>
   <PropertyVal Name="Underline">False</PropertyVal>
-  <PropertyVal Name="UseFocusRing">False</PropertyVal>
+  <PropertyVal Name="ValidationMask"></PropertyVal>
   <PropertyVal Name="Visible">True</PropertyVal>
   <PropertyVal Name="Width">84</PropertyVal>
   <ControlIndex>1</ControlIndex>

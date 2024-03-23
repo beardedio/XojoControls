@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2021r2" FormatVersion="2" MinIDEVersion="20150400">
+<RBProject version="2023r4" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="1817694522">
  <ObjName>MyCheckBox</ObjName>
  <ObjContainerID>515859547</ObjContainerID>
  <IsClass>1</IsClass>
- <Superclass>CheckBox</Superclass>
+ <Superclass>DesktopCheckBox</Superclass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
  <HookInstance>
-  <ItemName>Action</ItemName>
+  <ItemName>ValueChanged</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <PartID>439939071</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub Action()</SourceLine>
+   <SourceLine>Sub ValueChanged()</SourceLine>
    <SourceLine>If Not SettingDefaultValue Then</SourceLine>
    <SourceLine>RaiseEvent Action</SourceLine>
    <SourceLine>End If</SourceLine>
@@ -168,20 +168,6 @@
    <ItemType>String</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>DataField</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Database Binding</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>DataField</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>DataSource</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Database Binding</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>DataSource</EditorType>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>Enabled</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
@@ -200,10 +186,6 @@
    <Visible>1</Visible>
    <PropertyGroup>ID</PropertyGroup>
    <ItemType>Integer</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>InitialParent</ObjName>
-   <ItemType>String</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>InitialValue</ObjName>

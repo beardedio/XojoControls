@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2021r2" FormatVersion="2" MinIDEVersion="20150400">
+<RBProject version="2023r4" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="2054422769">
  <ObjName>MyTextField</ObjName>
  <ObjContainerID>515859547</ObjContainerID>
  <IsClass>1</IsClass>
- <Superclass>TextField</Superclass>
+ <Superclass>DesktopTextField</Superclass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -15,7 +15,7 @@
   <PartID>1546455039</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean</SourceLine>
+   <SourceLine>Function ConstructContextualMenu(base As DesktopMenuItem, x As Integer, y As Integer) As Boolean</SourceLine>
    <SourceLine>#if TargetCarbon Then</SourceLine>
    <SourceLine>Dim MyMenuItem As MenuItem</SourceLine>
    <SourceLine>Dim ModKey As String</SourceLine>
@@ -69,13 +69,13 @@
   </ItemSource>
  </HookInstance>
  <HookInstance>
-  <ItemName>TextChange</ItemName>
+  <ItemName>TextChanged</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <PartID>1939238911</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub TextChange()</SourceLine>
+   <SourceLine>Sub TextChanged()</SourceLine>
    <SourceLine>If Not SettingDefaultValue Then</SourceLine>
    <SourceLine>RaiseEvent TextChange</SourceLine>
    <SourceLine>End If</SourceLine>
@@ -118,15 +118,15 @@
    <SourceLine>Dim mySelStart, mySelLength As Integer</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>SettingDefaultValue = True</SourceLine>
-   <SourceLine>mySelStart = Self.SelStart</SourceLine>
-   <SourceLine>mySelLength = Self.SelLength</SourceLine>
+   <SourceLine>mySelStart = Self.SelectionStart</SourceLine>
+   <SourceLine>mySelLength = Self.SelectionLength</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>SettingInitialText = value</SourceLine>
    <SourceLine>Self.Text = value</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Self.SelLength = mySelLength</SourceLine>
-   <SourceLine>Self.SelStart = mySelStart</SourceLine>
+   <SourceLine>Self.SelectionLength = mySelLength</SourceLine>
+   <SourceLine>Self.SelectionStart = mySelStart</SourceLine>
    <SourceLine>SettingDefaultValue = False</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
@@ -195,8 +195,8 @@
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>&amp;hFFFFFF</PropertyValue>
-   <ItemType>Color</ItemType>
-   <EditorType>Color</EditorType>
+   <ItemType>ColorGroup</ItemType>
+   <EditorType>ColorGroup</EditorType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>HasBorder</ObjName>
@@ -288,7 +288,7 @@
    <Visible>1</Visible>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>False</PropertyValue>
-   <ItemType>boolean</ItemType>
+   <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>MaximumCharactersAllowed</ObjName>
@@ -402,8 +402,8 @@
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>&amp;h000000</PropertyValue>
-   <ItemType>Color</ItemType>
-   <EditorType>Color</EditorType>
+   <ItemType>ColorGroup</ItemType>
+   <EditorType>ColorGroup</EditorType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Enabled</ObjName>
@@ -455,20 +455,6 @@
    <Visible>1</Visible>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>DataSource</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Database Binding</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>DataSource</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>DataField</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Database Binding</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>DataField</EditorType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>InitialText</ObjName>
