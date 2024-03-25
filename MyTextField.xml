@@ -77,7 +77,7 @@
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub TextChanged()</SourceLine>
    <SourceLine>If Not SettingDefaultValue Then</SourceLine>
-   <SourceLine>RaiseEvent TextChange</SourceLine>
+   <SourceLine>RaiseEvent TextChanged</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
@@ -91,7 +91,7 @@
   <ItemResult></ItemResult>
  </Hook>
  <Hook>
-  <ItemName>TextChange</ItemName>
+  <ItemName>TextChanged</ItemName>
   <TextEncoding>134217984</TextEncoding>
   <ItemFlags>33</ItemFlags>
   <SystemFlags>0</SystemFlags>

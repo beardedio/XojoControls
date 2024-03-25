@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2021r2" FormatVersion="2" MinIDEVersion="20150400">
+<RBProject version="2021r3.1" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="106401791">
  <ObjName>MyDate</ObjName>
  <ObjContainerID>515859547</ObjContainerID>
  <IsClass>1</IsClass>
- <Superclass>Date</Superclass>
+ <Superclass>DateTime</Superclass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -30,6 +30,24 @@
   <IsShared>0</IsShared>
   <ItemParams>s As String, charsToCut As Integer</ItemParams>
   <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>863541247</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
  </Method>
  <Property>
   <ItemName>ISO8601</ItemName>
@@ -81,57 +99,57 @@
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
-   <SourceLine>Dim valuelen As Integer</SourceLine>
-   <SourceLine>'1986-02-12T01:19:21+02:00</SourceLine>
-   <SourceLine>'2004-02-12T15:59:21Z</SourceLine>
-   <SourceLine>'2010-02-12T23:19:00-03:30</SourceLine>
-   <SourceLine>value = Uppercase(value)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>valuelen = Len(value)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>If valuelen &lt; 16 Then</SourceLine>
-   <SourceLine>Select Case valuelen</SourceLine>
-   <SourceLine>Case 4 'YYYY</SourceLine>
-   <SourceLine>Self.Year = Val(value)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Case 7 'YYYY-MM</SourceLine>
-   <SourceLine>Self.Year = Val(Left(value, 4))</SourceLine>
-   <SourceLine>Self.Month = Val(Right(value, 2))</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Case 10 'YYYY-MM-DD</SourceLine>
-   <SourceLine>Self.SQLDate = value</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Else</SourceLine>
-   <SourceLine>Raise New UnsupportedFormatException</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Select</SourceLine>
-   <SourceLine>Else</SourceLine>
-   <SourceLine>' If no timezone add one</SourceLine>
-   <SourceLine>If value.Right(1) &lt;&gt; "Z" And _</SourceLine>
-   <SourceLine>value.Mid(value.Len-6, 1) &lt;&gt; "+" And _</SourceLine>
-   <SourceLine>value.Mid(value.Len-6, 1) &lt;&gt; "-" Then</SourceLine>
-   <SourceLine>value = value + "Z"</SourceLine>
-   <SourceLine>End If</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>' Replace Z with 0 offset</SourceLine>
-   <SourceLine>value = ReplaceAll(value, "Z", "+00:00")</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>' YYYY-MM-DDThh:mm+00:00</SourceLine>
-   <SourceLine>value = ReplaceAll(value, "T", " ")</SourceLine>
-   <SourceLine>value = Chop(value, 3)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>' Set Time Zone</SourceLine>
-   <SourceLine>Self.GMTOffset = Val(Right(value, 3))</SourceLine>
-   <SourceLine>'val(Left(Right(value, 6), 3))</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>' Remove Time Zone</SourceLine>
-   <SourceLine>value = Chop(value, 3)</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>value = Left(value, Len(value)-InStr(value, "."))</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Self.SQLDateTime = value</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End If</SourceLine>
+   <SourceLine>'Dim valuelen As Integer</SourceLine>
+   <SourceLine>''1986-02-12T01:19:21+02:00</SourceLine>
+   <SourceLine>''2004-02-12T15:59:21Z</SourceLine>
+   <SourceLine>''2010-02-12T23:19:00-03:30</SourceLine>
+   <SourceLine>'value = Uppercase(value)</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'valuelen = Len(value)</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'If valuelen &lt; 16 Then</SourceLine>
+   <SourceLine>'Select Case valuelen</SourceLine>
+   <SourceLine>'Case 4 'YYYY</SourceLine>
+   <SourceLine>'Self.Year = Val(value)</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'Case 7 'YYYY-MM</SourceLine>
+   <SourceLine>'Self.Year = Val(Left(value, 4))</SourceLine>
+   <SourceLine>'Self.Month = Val(Right(value, 2))</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'Case 10 'YYYY-MM-DD</SourceLine>
+   <SourceLine>'Self.SQLDate = value</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'Else</SourceLine>
+   <SourceLine>'Raise New UnsupportedFormatException</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'End Select</SourceLine>
+   <SourceLine>'Else</SourceLine>
+   <SourceLine>'' If no timezone add one</SourceLine>
+   <SourceLine>'If value.Right(1) &lt;&gt; "Z" And _</SourceLine>
+   <SourceLine>'value.Mid(value.Len-6, 1) &lt;&gt; "+" And _</SourceLine>
+   <SourceLine>'value.Mid(value.Len-6, 1) &lt;&gt; "-" Then</SourceLine>
+   <SourceLine>'value = value + "Z"</SourceLine>
+   <SourceLine>'End If</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'' Replace Z with 0 offset</SourceLine>
+   <SourceLine>'value = ReplaceAll(value, "Z", "+00:00")</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'' YYYY-MM-DDThh:mm+00:00</SourceLine>
+   <SourceLine>'value = ReplaceAll(value, "T", " ")</SourceLine>
+   <SourceLine>'value = Chop(value, 3)</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'' Set Time Zone</SourceLine>
+   <SourceLine>'Self.GMTOffset = Val(Right(value, 3))</SourceLine>
+   <SourceLine>''val(Left(Right(value, 6), 3))</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'' Remove Time Zone</SourceLine>
+   <SourceLine>'value = Chop(value, 3)</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'value = Left(value, Len(value)-InStr(value, "."))</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'Self.SQLDateTime = value</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>'End If</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
@@ -221,13 +239,7 @@
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
-   <SourceLine>Dim parts() As String</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>parts = Split(value, ":")</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Self.Hour = val(parts(0))</SourceLine>
-   <SourceLine>Self.Minute = val(parts(1))</SourceLine>
-   <SourceLine>Self.Second = val(parts(2))</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
@@ -254,16 +266,13 @@
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
-   <SourceLine>Self.TotalSeconds = value + 2082844800</SourceLine>
-   <SourceLine></SourceLine>
+   <SourceLine>Self.Constructor(value)</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Get</SourceLine>
-   <SourceLine>Return Self.TotalSeconds - 2082844800</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine></SourceLine>
+   <SourceLine>Return Self.SecondsFrom1970</SourceLine>
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
@@ -284,18 +293,22 @@
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
-   <SourceLine>Self.Year = Val(value.Mid(1,4))</SourceLine>
-   <SourceLine>Self.Month = Val(value.Mid(5,2))</SourceLine>
-   <SourceLine>Self.Day = Val(value.Mid(7,2))</SourceLine>
-   <SourceLine>Self.Hour = Val(value.Mid(9,2))</SourceLine>
-   <SourceLine>Self.Minute = Val(value.Mid(11,2))</SourceLine>
-   <SourceLine>Self.Second = Val(value.Mid(13,2))</SourceLine>
+   <SourceLine>Dim Year, Month, Day, Hour, Minute, Second As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Year = Val(value.Middle(1,4))</SourceLine>
+   <SourceLine>Month = Val(value.Middle(5,2))</SourceLine>
+   <SourceLine>Day = Val(value.Middle(7,2))</SourceLine>
+   <SourceLine>Hour = Val(value.Middle(9,2))</SourceLine>
+   <SourceLine>Minute = Val(value.Middle(11,2))</SourceLine>
+   <SourceLine>Second = Val(value.Middle(13,2))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Constructor(Year, Month, Day, Hour, Minute, Second)</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Get</SourceLine>
-   <SourceLine>Return Format(Self.Year,"0000")+Format(Self.Month,"00")+Format(Self.Day,"00")+Format(Self.Hour,"00")+Format(Self.Minute,"00")+Format(Self.Second,"00")</SourceLine>
+   <SourceLine>Return Format(Self.Year, "0000")+Format(Self.Month, "00")+Format(Self.Day, "00")+Format(Self.Hour, "00")+Format(Self.Minute, "00")+Format(Self.Second, "00")</SourceLine>
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
@@ -316,15 +329,19 @@
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
-   <SourceLine>Self.Year = Val(value.Mid(1,4))</SourceLine>
-   <SourceLine>Self.Month = Val(value.Mid(5,2))</SourceLine>
-   <SourceLine>Self.Day = Val(value.Mid(7,2))</SourceLine>
+   <SourceLine>Dim Year, Month, Day As Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Year = Val(value.Middle(1,4))</SourceLine>
+   <SourceLine>Month = Val(value.Middle(5,2))</SourceLine>
+   <SourceLine>Day = Val(value.Middle(7,2))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Self.Constructor(Year, Month, Day)</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Get</SourceLine>
-   <SourceLine>Return Format(Self.Year,"0000")+Format(Self.Month,"00")+Format(Self.Day,"00")</SourceLine>
+   <SourceLine>Return Format(Self.Year, "0000")+Format(Self.Month, "00")+Format(Self.Day, "00")</SourceLine>
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
@@ -355,7 +372,130 @@
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
+ <Property>
+  <ItemName>ShortDate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>107847679</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>ShortDate As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>ShortDate As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return ""</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>ShortTime</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>739258367</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>ShortTime As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>ShortTime As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return ""</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>GMTOffset</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>722259967</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Property GMTOffset As Integer</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>GMTOffset As Integer</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Return 0</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>SQLDateTime</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>796790783</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Property SQLDateTime As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>SQLDateTime As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return ""</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
  <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Nanosecond</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>SecondsFrom1970</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Double</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>IsDaylightSavingsTime</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
   <ViewProperty>
    <ObjName>Name</ObjName>
    <Visible>1</Visible>
@@ -450,36 +590,6 @@
    <EditorType>MultiLineEditor</EditorType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>LongDate</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>MultiLineEditor</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AbbreviatedDate</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>MultiLineEditor</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>ShortTime</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>MultiLineEditor</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>LongTime</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>MultiLineEditor</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>TotalSeconds</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Double</ItemType>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>SQLDate</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
@@ -490,12 +600,6 @@
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>GMTOffset</ObjName>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Double</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>ISO8601</ObjName>
@@ -534,6 +638,23 @@
   </ViewProperty>
   <ViewProperty>
    <ObjName>FileTimeStamp</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>ShortTime</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>GMTOffset</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>SQLDateTime</ObjName>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>String</ItemType>
    <EditorType>MultiLineEditor</EditorType>

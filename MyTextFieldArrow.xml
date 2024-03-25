@@ -27,7 +27,7 @@
   <ItemResult></ItemResult>
  </Method>
  <Hook>
-  <ItemName>TextChange</ItemName>
+  <ItemName>TextChanged</ItemName>
   <TextEncoding>134217984</TextEncoding>
   <ItemFlags>33</ItemFlags>
   <SystemFlags>0</SystemFlags>
@@ -448,7 +448,7 @@
     <SourceLine>'Self.Text = Str(Min)</SourceLine>
     <SourceLine>End If</SourceLine>
     <SourceLine></SourceLine>
-    <SourceLine>RaiseEvent TextChange</SourceLine>
+    <SourceLine>RaiseEvent TextChanged</SourceLine>
     <SourceLine>End Sub</SourceLine>
    </ItemSource>
   </HookInstance>
@@ -473,7 +473,7 @@
     <SourceLine>'Self.Text = Str(Min)</SourceLine>
     <SourceLine>End If</SourceLine>
     <SourceLine></SourceLine>
-    <SourceLine>RaiseEvent TextChange</SourceLine>
+    <SourceLine>RaiseEvent TextChanged</SourceLine>
     <SourceLine>End Sub</SourceLine>
    </ItemSource>
   </HookInstance>
@@ -500,7 +500,7 @@
     <SourceLine>End If</SourceLine>
     <SourceLine></SourceLine>
     <SourceLine>If Not SettingDefaultText Then</SourceLine>
-    <SourceLine>RaiseEvent TextChange</SourceLine>
+    <SourceLine>RaiseEvent TextChanged</SourceLine>
     <SourceLine>End If</SourceLine>
     <SourceLine>End Sub</SourceLine>
    </ItemSource>
