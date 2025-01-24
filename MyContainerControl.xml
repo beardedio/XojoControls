@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2014r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2024r4.2" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="1873676629">
  <ObjName>MyContainerControl</ObjName>
  <ObjContainerID>1333785165</ObjContainerID>
  <IsClass>1</IsClass>
- <Superclass>ContainerControl</Superclass>
+ <Superclass>DesktopContainer</Superclass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
@@ -12,6 +12,7 @@
   <ItemName>Show</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1943562239</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Show()</SourceLine>
@@ -30,6 +31,7 @@
   <ItemName>Hide</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>739522559</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Hide()</SourceLine>
@@ -72,6 +74,7 @@
   <ItemName>Visible</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1961951231</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Visible As Boolean</SourceLine>
@@ -84,25 +87,88 @@
   <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Set</SourceLine>
-   <SourceLine>ContainerControl(Me).Visible = value</SourceLine>
+   <SourceLine>DesktopContainer(Me).Visible = value</SourceLine>
    <SourceLine>RaiseEvent VisibilityChanged</SourceLine>
    <SourceLine>End Set</SourceLine>
   </SetAccessor>
   <GetAccessor>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Get</SourceLine>
-   <SourceLine>Return ContainerControl(Me).Visible</SourceLine>
+   <SourceLine>Return DesktopContainer(Me).Visible</SourceLine>
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
  <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowAutoDeactivate</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Tooltip</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowFocusRing</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>BackgroundColor</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Background</PropertyGroup>
+   <PropertyValue>&amp;hFFFFFF</PropertyValue>
+   <ItemType>Color</ItemType>
+   <EditorType>Color</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HasBackgroundColor</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Background</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowFocus</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowTabs</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>DoubleBuffer</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Windows Behavior</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
   <ViewProperty>
    <ObjName>Transparent</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <EditorType>Boolean</EditorType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Name</ObjName>
@@ -190,7 +256,6 @@
    <PropertyGroup>Position</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <EditorType>Boolean</EditorType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Visible</ObjName>
@@ -198,7 +263,6 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <EditorType>Boolean</EditorType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Enabled</ObjName>
@@ -206,63 +270,12 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <EditorType>Boolean</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AutoDeactivate</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>HelpTag</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <ItemType>String</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>UseFocusRing</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-   <EditorType>Boolean</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>HasBackColor</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>False</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>BackColor</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>&amp;hFFFFFF</PropertyValue>
-   <ItemType>Color</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Backdrop</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
    <ItemType>Picture</ItemType>
-   <EditorType>Picture</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AcceptFocus</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-   <EditorType>Boolean</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AcceptTabs</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-   <EditorType>Boolean</EditorType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>EraseBackground</ObjName>
@@ -270,7 +283,6 @@
    <PropertyGroup>Behavior</PropertyGroup>
    <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
-   <EditorType>Boolean</EditorType>
   </ViewProperty>
  </ViewBehavior>
 </block>
