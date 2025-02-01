@@ -1,20 +1,21 @@
-<?xml version="1.0"?>
-<RBProject version="2013r2" FormatVersion="2" MinIDEVersion="20070100">
+<?xml version="1.0" encoding="UTF-8"?>
+<RBProject version="2024r4.2" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="451265792">
  <ObjName>MyDateField</ObjName>
  <ObjContainerID>1333785165</ObjContainerID>
  <IsClass>1</IsClass>
- <Superclass>TextField</Superclass>
+ <Superclass>DesktopTextField</Superclass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
  <Compatibility></Compatibility>
  <HookInstance>
-  <ItemName>GotFocus</ItemName>
+  <ItemName>FocusReceived</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1621972991</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub GotFocus()</SourceLine>
+   <SourceLine>Sub FocusReceived()</SourceLine>
    <SourceLine>me.HasFocus = True</SourceLine>
    <SourceLine>me.UpdateDateDisplay(kSelectFrameFirstFrame)</SourceLine>
    <SourceLine>End Sub</SourceLine>
@@ -24,9 +25,10 @@
   <ItemName>KeyDown</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1456842751</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function KeyDown(Key As String) As Boolean</SourceLine>
+   <SourceLine>Function KeyDown(key As String) As Boolean</SourceLine>
    <SourceLine>Dim i, iCurrentFramePos As Integer</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>iCurrentFramePos = -1</SourceLine>
@@ -69,9 +71,9 @@
    <SourceLine>iDaysInMonth = DaysInMonth(me.CurrentDate)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If me.FormatLeadingZeroDay Then</SourceLine>
-   <SourceLine>iCombinedValue = Val(Right(me.SelText,2) + Key)</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelectedText,2) + Key)</SourceLine>
    <SourceLine>Else</SourceLine>
-   <SourceLine>iCombinedValue = Val(Right(me.SelText,1) + Key)</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelectedText,1) + Key)</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>If iCombinedValue &gt; iDaysInMonth Then</SourceLine>
    <SourceLine>iDayValue = Val(Key)</SourceLine>
@@ -95,9 +97,9 @@
    <SourceLine>dNewMonth.TotalSeconds = me.CurrentDate.TotalSeconds</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If me.FormatLeadingZeroMonth Then</SourceLine>
-   <SourceLine>iCombinedValue = Val(Right(me.SelText,2) + Key)</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelectedText,2) + Key)</SourceLine>
    <SourceLine>Else</SourceLine>
-   <SourceLine>iCombinedValue = Val(Right(me.SelText,1) + Key)</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelectedText,1) + Key)</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>If iCombinedValue &gt; 12 Then</SourceLine>
    <SourceLine>iMonthValue = Val(Key)</SourceLine>
@@ -126,7 +128,7 @@
    <SourceLine>dNewYear = New Date</SourceLine>
    <SourceLine>dNewYear.TotalSeconds = me.CurrentDate.TotalSeconds</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>iCombinedValue = Val(Right(me.SelText,Len(me.SelText)-1) + Key)</SourceLine>
+   <SourceLine>iCombinedValue = Val(Right(me.SelectedText,Len(me.SelectedText)-1) + Key)</SourceLine>
    <SourceLine>If iCombinedValue &gt; 9999 Then</SourceLine>
    <SourceLine>iYearValue = Val(Key)</SourceLine>
    <SourceLine>Else</SourceLine>
@@ -146,12 +148,13 @@
   </ItemSource>
  </HookInstance>
  <HookInstance>
-  <ItemName>LostFocus</ItemName>
+  <ItemName>FocusLost</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1936502783</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub LostFocus()</SourceLine>
+   <SourceLine>Sub FocusLost()</SourceLine>
    <SourceLine>me.HasFocus = False</SourceLine>
    <SourceLine>me.UpdateDateDisplay(kSelectFrameNone)</SourceLine>
    <SourceLine>End Sub</SourceLine>
@@ -161,14 +164,15 @@
   <ItemName>MouseDown</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1396989951</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function MouseDown(X As Integer, Y As Integer) As Boolean</SourceLine>
+   <SourceLine>Function MouseDown(x As Integer, y As Integer) As Boolean</SourceLine>
    <SourceLine>Dim iChar As Integer</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If Not me.HasFocus Then me.SetFocus()</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>iChar = me.CharPosAtXY(X,Y)</SourceLine>
+   <SourceLine>iChar = me.CharacterPosition(X, Y)</SourceLine>
    <SourceLine>If iChar &gt;= iPositionDayStart and iChar &lt;= iPositionDayStart + iPositionDayLength Then</SourceLine>
    <SourceLine>me.UpdateDateDisplay(kFrameDays)</SourceLine>
    <SourceLine>ElseIf iChar &gt;= iPositionMonthStart and iChar &lt;= iPositionMonthStart + iPositionMonthLength Then</SourceLine>
@@ -184,18 +188,19 @@
   </ItemSource>
  </HookInstance>
  <HookInstance>
-  <ItemName>Open</ItemName>
+  <ItemName>Opening</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1597439999</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub Open()</SourceLine>
+   <SourceLine>Sub Opening()</SourceLine>
    <SourceLine>Dim bAssOrig As Boolean</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>me.CurrentDate = New Date</SourceLine>
    <SourceLine>me.ReadOnly = True</SourceLine>
-   <SourceLine>me.AcceptTabs = True</SourceLine>
-   <SourceLine>me.Alignment = EditField.AlignRight</SourceLine>
+   <SourceLine>me.AllowTabStop = True</SourceLine>
+   <SourceLine>me.TextAlignment = TextAlignments.Right</SourceLine>
    <SourceLine>me.UpdateDateDisplay(kSelectFrameNone)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>RaiseEvent Open()</SourceLine>
@@ -203,18 +208,19 @@
   </ItemSource>
  </HookInstance>
  <HookInstance>
-  <ItemName>SelChange</ItemName>
+  <ItemName>SelectionChanged</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>183922687</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub SelChange()</SourceLine>
+   <SourceLine>Sub SelectionChanged()</SourceLine>
    <SourceLine>If me.assigningSelection Then Return</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If me.HasFocus Then</SourceLine>
    <SourceLine>Dim iShouldBeStart, iShouldBeLength, iChar As Integer</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>iChar = me.SelStart</SourceLine>
+   <SourceLine>iChar = me.SelectionStart</SourceLine>
    <SourceLine>If iChar &gt;= iPositionDayStart and iChar &lt;= iPositionDayStart + iPositionDayLength Then</SourceLine>
    <SourceLine>If Not me.HasFocus Then me.SetFocus()</SourceLine>
    <SourceLine>iShouldBeStart = iPositionDayStart</SourceLine>
@@ -236,20 +242,20 @@
    <SourceLine>me.iLastFrameType = kSelectFrameNone</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>If me.SelStart &lt;&gt; iShouldBeStart or me.SelStart &lt;&gt; iShouldBeLength Then</SourceLine>
+   <SourceLine>If me.SelectionStart &lt;&gt; iShouldBeStart or me.SelectionStart &lt;&gt; iShouldBeLength Then</SourceLine>
    <SourceLine>Dim bAssSel As Boolean</SourceLine>
    <SourceLine>bAssSel = me.assigningSelection</SourceLine>
    <SourceLine>me.assigningSelection = True</SourceLine>
-   <SourceLine>me.SelStart = iShouldBeStart</SourceLine>
-   <SourceLine>me.SelLength = iShouldBeLength</SourceLine>
+   <SourceLine>me.SelectionStart = iShouldBeStart</SourceLine>
+   <SourceLine>me.SelectionLength = iShouldBeLength</SourceLine>
    <SourceLine>me.assigningSelection = bAssSel</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>Else</SourceLine>
    <SourceLine>Dim bAssSel As Boolean</SourceLine>
    <SourceLine>bAssSel = me.assigningSelection</SourceLine>
    <SourceLine>me.assigningSelection = True</SourceLine>
-   <SourceLine>me.SelStart = 0</SourceLine>
-   <SourceLine>me.SelLength = 0</SourceLine>
+   <SourceLine>me.SelectionStart = 0</SourceLine>
+   <SourceLine>me.SelectionLength = 0</SourceLine>
    <SourceLine>me.iLastFrameType = kSelectFrameNone</SourceLine>
    <SourceLine>me.assigningSelection = bAssSel</SourceLine>
    <SourceLine>End If</SourceLine>
@@ -260,9 +266,10 @@
   <ItemName>DaysInMonth</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1672564735</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine> Shared Function DaysInMonth(d As Date) As Integer</SourceLine>
+   <SourceLine>Shared Function DaysInMonth(d As Date) As Integer</SourceLine>
    <SourceLine>Dim dNew As Date</SourceLine>
    <SourceLine>Dim iCount As Integer</SourceLine>
    <SourceLine></SourceLine>
@@ -289,6 +296,7 @@
   <ItemName>Down</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>163420159</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Down()</SourceLine>
@@ -342,6 +350,7 @@
   <ItemName>GetCurrentDate</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>548593663</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetCurrentDate() As Date</SourceLine>
@@ -359,6 +368,7 @@
   <ItemName>SetCurrentDate</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1820620799</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub SetCurrentDate(d As Date)</SourceLine>
@@ -385,6 +395,7 @@
   <ItemName>Up</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1156163583</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Up()</SourceLine>
@@ -438,6 +449,7 @@
   <ItemName>UpdateDateDisplay</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1049331711</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub UpdateDateDisplay(iAutoSelectFrame As Integer)</SourceLine>
@@ -582,22 +594,22 @@
    <SourceLine>If me.HasFocus Then</SourceLine>
    <SourceLine>Select Case iFinalSelectFrame</SourceLine>
    <SourceLine>Case kFrameDays</SourceLine>
-   <SourceLine>me.SelStart = iPositionDayStart</SourceLine>
-   <SourceLine>me.SelLength = iPositionDayLength</SourceLine>
+   <SourceLine>me.SelectionStart = iPositionDayStart</SourceLine>
+   <SourceLine>me.SelectionLength = iPositionDayLength</SourceLine>
    <SourceLine>Case kFrameMonths</SourceLine>
-   <SourceLine>me.SelStart = iPositionMonthStart</SourceLine>
-   <SourceLine>me.SelLength = iPositionMonthLength</SourceLine>
+   <SourceLine>me.SelectionStart = iPositionMonthStart</SourceLine>
+   <SourceLine>me.SelectionLength = iPositionMonthLength</SourceLine>
    <SourceLine>Case kFrameYears</SourceLine>
-   <SourceLine>me.SelStart = iPositionYearStart</SourceLine>
-   <SourceLine>me.SelLength = iPositionYearLength</SourceLine>
+   <SourceLine>me.SelectionStart = iPositionYearStart</SourceLine>
+   <SourceLine>me.SelectionLength = iPositionYearLength</SourceLine>
    <SourceLine>Else //kFrameNone</SourceLine>
-   <SourceLine>me.SelStart = 0</SourceLine>
-   <SourceLine>me.SelLength = 0</SourceLine>
+   <SourceLine>me.SelectionStart = 0</SourceLine>
+   <SourceLine>me.SelectionLength = 0</SourceLine>
    <SourceLine>End Select</SourceLine>
    <SourceLine>me.iLastFrameType = iFinalSelectFrame</SourceLine>
    <SourceLine>Else</SourceLine>
-   <SourceLine>me.SelStart = 0</SourceLine>
-   <SourceLine>me.SelLength = 0</SourceLine>
+   <SourceLine>me.SelectionStart = 0</SourceLine>
+   <SourceLine>me.SelectionLength = 0</SourceLine>
    <SourceLine>me.iLastFrameType = kSelectFrameNone</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
@@ -631,6 +643,7 @@
   <ItemName>Credits</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>397426687</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <NoteLine>Credits</NoteLine>
@@ -652,6 +665,7 @@
   <ItemName>Legal</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>657111039</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <NoteLine>Legal</NoteLine>
@@ -666,6 +680,7 @@
   <ItemName>Release Notes</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1093140479</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <NoteLine>Release Notes</NoteLine>
@@ -677,6 +692,7 @@
   <ItemName>assigningSelection</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>216666111</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>assigningSelection As Boolean</SourceLine>
@@ -691,6 +707,7 @@
   <ItemName>CurrentDate</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>964263935</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>CurrentDate As Date</SourceLine>
@@ -705,6 +722,7 @@
   <ItemName>FormatDateOrder(2)</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1477380095</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>FormatDateOrder(2) As Integer</SourceLine>
@@ -719,6 +737,7 @@
   <ItemName>FormatDateSep</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>329920511</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>FormatDateSep As String</SourceLine>
@@ -733,6 +752,7 @@
   <ItemName>FormatLeadingZeroDay</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>565237759</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>FormatLeadingZeroDay As Boolean</SourceLine>
@@ -747,6 +767,7 @@
   <ItemName>FormatLeadingZeroMonth</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>552919039</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>FormatLeadingZeroMonth As Boolean</SourceLine>
@@ -761,6 +782,7 @@
   <ItemName>FormatShowCentury</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1741129727</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>FormatShowCentury As Boolean</SourceLine>
@@ -775,6 +797,7 @@
   <ItemName>HasFocus</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>139728895</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>HasFocus As Boolean</SourceLine>
@@ -789,6 +812,7 @@
   <ItemName>iLastFrameDateOrderIndex</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>953575423</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>iLastFrameDateOrderIndex As Integer</SourceLine>
@@ -803,6 +827,7 @@
   <ItemName>iLastFrameType</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>817698815</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>iLastFrameType As Integer</SourceLine>
@@ -817,6 +842,7 @@
   <ItemName>iLastSelStart</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>852936703</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>iLastSelStart As Integer</SourceLine>
@@ -831,6 +857,7 @@
   <ItemName>iPositionDayLength</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1355223039</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>iPositionDayLength As Integer</SourceLine>
@@ -845,6 +872,7 @@
   <ItemName>iPositionDayStart</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>472522751</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>iPositionDayStart As Integer</SourceLine>
@@ -859,6 +887,7 @@
   <ItemName>iPositionMonthLength</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1755844607</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>iPositionMonthLength As Integer</SourceLine>
@@ -873,6 +902,7 @@
   <ItemName>iPositionMonthStart</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>473417727</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>iPositionMonthStart As Integer</SourceLine>
@@ -887,6 +917,7 @@
   <ItemName>iPositionYearLength</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1984999423</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>iPositionYearLength As Integer</SourceLine>
@@ -901,6 +932,7 @@
   <ItemName>iPositionYearStart</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1104072703</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>iPositionYearStart As Integer</SourceLine>
@@ -912,6 +944,126 @@
   <IsShared>0</IsShared>
  </Property>
  <ViewBehavior>
+  <ViewProperty>
+   <ObjName>AllowAutoDeactivate</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>BackgroundColor</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>&amp;hFFFFFF</PropertyValue>
+   <ItemType>Color</ItemType>
+   <EditorType>Color</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>HasBorder</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Tooltip</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Transparent</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowFocusRing</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Appearance</PropertyGroup>
+   <PropertyValue>True</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>FontName</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>System</PropertyValue>
+   <ItemType>String</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>FontSize</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Single</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>FontUnit</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Font</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>FontUnits</ItemType>
+   <EditorType>Enum</EditorType>
+   <Enumeration>
+    <ItemDef>0 - Default</ItemDef>
+    <ItemDef>1 - Pixel</ItemDef>
+    <ItemDef>2 - Point</ItemDef>
+    <ItemDef>3 - Inch</ItemDef>
+    <ItemDef>4 - Millimeter</ItemDef>
+   </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Hint</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Initial State</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowTabs</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>Boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>TextAlignment</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>TextAlignments</ItemType>
+   <EditorType>Enum</EditorType>
+   <Enumeration>
+    <ItemDef>0 - Default</ItemDef>
+    <ItemDef>1 - Left</ItemDef>
+    <ItemDef>2 - Center</ItemDef>
+    <ItemDef>3 - Right</ItemDef>
+   </Enumeration>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>AllowSpellChecking</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>False</PropertyValue>
+   <ItemType>boolean</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>MaximumCharactersAllowed</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <ItemType>Integer</ItemType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>ValidationMask</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+  </ViewProperty>
   <ViewProperty>
    <ObjName>Name</ObjName>
    <Visible>1</Visible>
@@ -1001,23 +1153,9 @@
    <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>Border</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>Password</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Appearance</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>UseFocusRing</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
    <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
@@ -1026,13 +1164,7 @@
    <PropertyGroup>Appearance</PropertyGroup>
    <PropertyValue>&amp;h000000</PropertyValue>
    <ItemType>Color</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>BackColor</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>&amp;hFFFFFF</PropertyValue>
-   <ItemType>Color</ItemType>
+   <EditorType>Color</EditorType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>Enabled</ObjName>
@@ -1055,49 +1187,6 @@
    <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>HelpTag</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>MultiLineEditor</EditorType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AutoDeactivate</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Appearance</PropertyGroup>
-   <PropertyValue>True</PropertyValue>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>TextFont</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Font</PropertyGroup>
-   <PropertyValue>System</PropertyValue>
-   <ItemType>String</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>TextSize</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Font</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Single</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>TextUnit</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Font</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>FontUnits</ItemType>
-   <EditorType>Enum</EditorType>
-   <Enumeration>
-    <ItemDef>0 - Default</ItemDef>
-    <ItemDef>1 - Pixel</ItemDef>
-    <ItemDef>2 - Point</ItemDef>
-    <ItemDef>3 - Inch</ItemDef>
-    <ItemDef>4 - Millimeter</ItemDef>
-   </Enumeration>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>Bold</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Font</PropertyGroup>
@@ -1116,13 +1205,6 @@
    <ItemType>Boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>CueText</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Initial State</PropertyGroup>
-   <ItemType>String</ItemType>
-   <EditorType>MultiLineEditor</EditorType>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>Text</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Initial State</PropertyGroup>
@@ -1130,50 +1212,10 @@
    <EditorType>MultiLineEditor</EditorType>
   </ViewProperty>
   <ViewProperty>
-   <ObjName>Mask</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>String</ItemType>
-  </ViewProperty>
-  <ViewProperty>
    <ObjName>ReadOnly</ObjName>
    <Visible>1</Visible>
    <PropertyGroup>Behavior</PropertyGroup>
    <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>LimitText</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AcceptTabs</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <ItemType>Boolean</ItemType>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>Alignment</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>0</PropertyValue>
-   <ItemType>Integer</ItemType>
-   <EditorType>Enum</EditorType>
-   <Enumeration>
-    <ItemDef>0 - Default</ItemDef>
-    <ItemDef>1 - Left</ItemDef>
-    <ItemDef>2 - Center</ItemDef>
-    <ItemDef>3 - Right</ItemDef>
-   </Enumeration>
-  </ViewProperty>
-  <ViewProperty>
-   <ObjName>AutomaticallyCheckSpelling</ObjName>
-   <Visible>1</Visible>
-   <PropertyGroup>Behavior</PropertyGroup>
-   <PropertyValue>False</PropertyValue>
-   <ItemType>boolean</ItemType>
   </ViewProperty>
   <ViewProperty>
    <ObjName>DataSource</ObjName>
@@ -1200,8 +1242,8 @@
   <ItemName>kFrameDays</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>726939647</PartID>
   <TextEncoding>134217984</TextEncoding>
-  <ItemName>kFrameDays</ItemName>
   <ItemType>2</ItemType>
   <ItemDef>3</ItemDef>
   <ItemFlags>33</ItemFlags>
@@ -1210,8 +1252,8 @@
   <ItemName>kFrameMonths</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1839046655</PartID>
   <TextEncoding>134217984</TextEncoding>
-  <ItemName>kFrameMonths</ItemName>
   <ItemType>2</ItemType>
   <ItemDef>2</ItemDef>
   <ItemFlags>33</ItemFlags>
@@ -1220,8 +1262,8 @@
   <ItemName>kFrameYears</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>92401663</PartID>
   <TextEncoding>134217984</TextEncoding>
-  <ItemName>kFrameYears</ItemName>
   <ItemType>2</ItemType>
   <ItemDef>1</ItemDef>
   <ItemFlags>33</ItemFlags>
@@ -1230,8 +1272,8 @@
   <ItemName>kSelectFrameFirstFrame</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>556759039</PartID>
   <TextEncoding>134217984</TextEncoding>
-  <ItemName>kSelectFrameFirstFrame</ItemName>
   <ItemType>2</ItemType>
   <ItemDef>-1</ItemDef>
   <ItemFlags>33</ItemFlags>
@@ -1240,8 +1282,8 @@
   <ItemName>kSelectFrameNone</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>60616703</PartID>
   <TextEncoding>134217984</TextEncoding>
-  <ItemName>kSelectFrameNone</ItemName>
   <ItemType>2</ItemType>
   <ItemDef>0</ItemDef>
   <ItemFlags>33</ItemFlags>
@@ -1250,8 +1292,8 @@
   <ItemName>kSelFrameNext</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1498472447</PartID>
   <TextEncoding>134217984</TextEncoding>
-  <ItemName>kSelFrameNext</ItemName>
   <ItemType>2</ItemType>
   <ItemDef>-2</ItemDef>
   <ItemFlags>33</ItemFlags>
@@ -1260,8 +1302,8 @@
   <ItemName>kSelFramePrev</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>944979967</PartID>
   <TextEncoding>134217984</TextEncoding>
-  <ItemName>kSelFramePrev</ItemName>
   <ItemType>2</ItemType>
   <ItemDef>-3</ItemDef>
   <ItemFlags>33</ItemFlags>
